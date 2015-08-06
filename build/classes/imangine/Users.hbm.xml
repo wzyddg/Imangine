@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-2 19:52:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="imangine.Users" table="users" catalog="imangine" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" length="40" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="doll" type="string">
+            <column name="doll" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="128" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="20" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="birthday" type="timestamp">
+            <column name="birthday" length="19"  />
+        </property>
+        <property name="discription" type="string">
+            <column name="discription" />
+        </property>
+        <set name="groupComments" table="group_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.GroupComment" />
+        </set>
+        <set name="groupMems" table="group_mem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.GroupMem" />
+        </set>
+        <set name="picLikeds" table="pic_liked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.PicLiked" />
+        </set>
+        <set name="albumLikeds" table="album_liked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.AlbumLiked" />
+        </set>
+        <set name="pictureses" table="pictures" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="poster_id" />
+            </key>
+            <one-to-many class="imangine.Pictures" />
+        </set>
+        <set name="friendsesForFriendId" table="friends" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="friend_id" />
+            </key>
+            <one-to-many class="imangine.Friends" />
+        </set>
+        <set name="albumses" table="albums" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="setter_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.Albums" />
+        </set>
+        <set name="friendsesForMyId" table="friends" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="my_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.Friends" />
+        </set>
+        <set name="groupses" table="groups" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="setter_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.Groups" />
+        </set>
+        <set name="picComments" table="pic_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.PicComment" />
+        </set>
+    </class>
+</hibernate-mapping>

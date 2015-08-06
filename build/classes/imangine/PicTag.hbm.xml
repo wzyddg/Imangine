@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-2 19:52:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="imangine.PicTag" table="pic_tag" catalog="imangine" optimistic-lock="version">
+        <composite-id name="id" class="imangine.PicTagId">
+            <key-property name="tag" type="string">
+                <column name="tag" length="20" />
+            </key-property>
+            <key-property name="picId" type="int">
+                <column name="pic_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pictures" class="imangine.Pictures" update="false" insert="false" fetch="select">
+            <column name="pic_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

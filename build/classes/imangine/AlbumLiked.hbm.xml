@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-6-2 19:52:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="imangine.AlbumLiked" table="album_liked" catalog="imangine" optimistic-lock="version">
+        <composite-id name="id" class="imangine.AlbumLikedId">
+            <key-property name="albumId" type="int">
+                <column name="album_id" />
+            </key-property>
+            <key-property name="userId" type="java.lang.Integer">
+                <column name="user_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="albums" class="imangine.Albums" update="false" insert="false" fetch="select">
+            <column name="album_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="imangine.Users" update="false" insert="false" fetch="select">
+            <column name="user_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
