@@ -13,6 +13,7 @@
   </property>
   <property name="hibernate.connection.username">imangine</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+  <property name="current_session_context_class">jta</property>
   <mapping resource="imangine/AlbumIncluded.hbm.xml"/>
   <mapping resource="imangine/AlbumLiked.hbm.xml"/>
   <mapping resource="imangine/Albums.hbm.xml"/>

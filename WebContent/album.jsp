@@ -3,6 +3,7 @@
 <%@page import="imangine.Pictures"%>
 <%@page import="imangine.Albums"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>

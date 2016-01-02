@@ -51,8 +51,7 @@ public class DBQuerrier {
 			sessionFactory = configuration
 					.buildSessionFactory(standardServiceRegistry);
 		}
-		return (Session) sessionFactory.openSession();
-
+		return sessionFactory.openSession();
 	}
 
 	public static void main(String[] args) {
@@ -76,21 +75,21 @@ public class DBQuerrier {
 		// List<AlbumIncluded> a=getAlbumsWithPicId(25);
 		// System.out.println(a.size());
 		// getAlbumLikeUserIdsWithAlbumId(1);
-		// register("ÍæÄØ","wzysddg");
+		// register("ï¿½ï¿½ï¿½ï¿½","wzysddg");
 //		setPicLikeWithPicIdNUserId(67,20);
 		// getUserwithuserId(2);
 		// updateUserInfo(2,
-		// "¹ø°üÈâ","C:»ÆÆ¬¿´ÕâÀï",null,"shanghai","male","ÄãTMÀ´´òÎÒ°¡£¡£¡£¡","1999-05-18");
+		// "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","C:ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",null,"shanghai","male","ï¿½ï¿½TMï¿½ï¿½ï¿½ï¿½ï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","1999-05-18");
 		// changePasswordWithUserIdNOldPasswordNNewPassword(2,"456","456789");
 
-		// setPicWithAddressNTitleNTagsNposterId("Äã²Â22Í¼Æ¬ÔÚÄÄ","ÃÀ22Å®Í¼","ÃÀ2Å®,Ò°2ÊÞ,¹í2°¡",2);
+		// setPicWithAddressNTitleNTagsNposterId("ï¿½ï¿½ï¿½22Í¼Æ¬ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½22Å®Í¼","ï¿½ï¿½2Å®,Ò°2ï¿½ï¿½,ï¿½ï¿½2ï¿½ï¿½",2);
 
 		// setPicLikeWithPicIdNUserId(20,6);
-		// setPicCommentWithPicIdNUserIdNContent(1, 2, "ÎÔ²ÛÀÏÅ£±ÆÁË£¡");
-		// setGroupWithNameNSetterIdNTheme("FFFÍÅ", 1, "ÉÕËÀÒìÐÔÁµ");
+		// setPicCommentWithPicIdNUserIdNContent(1, 2, "ï¿½Ô²ï¿½ï¿½ï¿½Å£ï¿½ï¿½ï¿½Ë£ï¿½");
+		// setGroupWithNameNSetterIdNTheme("FFFï¿½ï¿½", 1, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		// joinGroupWithUserIdNGroupId(13, 4);
-		// setGroupCommentWithGroupIdNUserIdNContent(4, 2, "ºÃ°×²Ë¶¼±»Öí¹°ÁË£¡");
-		// setAlbumWithSetterIdNThemeNDescr(13, "ÓÎÏ·", "´ó¼Ò¶¼À´Íæ´óÌìÊ¹Ö®½£");
+		// setGroupCommentWithGroupIdNUserIdNContent(4, 2, "ï¿½Ã°×²Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½");
+		// setAlbumWithSetterIdNThemeNDescr(13, "ï¿½ï¿½Ï·", "ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹Ö®ï¿½ï¿½");
 		// addPicToAlbumWithPicId(20, 4);
 		 setAlbumLikeWithAlbumIdNUserId(4, 14);
 		// quitGroupWithUserIdNGroupId(13, 4);
@@ -152,7 +151,7 @@ public class DBQuerrier {
 			session.save(users);
 		} catch (Exception e) {
 			// TODO: handle exception
-			// System.out.println("ÓÊÏäÒÑ±»Ê¹ÓÃ");
+			// System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½Ê¹ï¿½ï¿½");
 			return null;
 		}
 		tx.commit();
@@ -165,7 +164,7 @@ public class DBQuerrier {
 	public static Users updateUserInfo(Integer userId, String userName,
 			String doll, String email, String city, String gender,
 			String discription, String birthday) {
-		// ÊäÈëÊÇ·ñÎª¿ÕÅÐ¶¨
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½ï¿½Ð¶ï¿½
 		Users user = getUserwithuserId(userId);
 		if (userName == null) {
 			userName = user.getUserName();
@@ -175,7 +174,7 @@ public class DBQuerrier {
 		}
 		if (email == null) {
 			email = user.getEmail();
-		} // ²»ÐÞ¸Ä¼´±£´æÔ­ÓÐÊý¾Ý
+		} // ï¿½ï¿½ï¿½Þ¸Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (city == null) {
 			city = user.getCity();
 		}
@@ -186,7 +185,7 @@ public class DBQuerrier {
 			discription = user.getDiscription();
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // µ÷ÕûÈÕÆÚ¸ñÊ½String
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½String
 																	// to Date
 		Date userBirthday = new Date();
 		// System.out.println(birthday);
@@ -220,7 +219,7 @@ public class DBQuerrier {
 	public static Users updateUserInfo(Integer userId, String userName,
 			String password, String doll, String email, String city,
 			String gender, String discription, String birthday) {
-		// ÊäÈëÊÇ·ñÎª¿ÕÅÐ¶¨
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½ï¿½Ð¶ï¿½
 		Users user = getUserwithuserId(userId);
 		if (userName == null) {
 			userName = user.getUserName();
@@ -230,7 +229,7 @@ public class DBQuerrier {
 		}
 		if (email == null) {
 			email = user.getEmail();
-		} // ²»ÐÞ¸Ä¼´±£´æÔ­ÓÐÊý¾Ý
+		} // ï¿½ï¿½ï¿½Þ¸Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (city == null) {
 			city = user.getCity();
 		}
@@ -244,7 +243,7 @@ public class DBQuerrier {
 			password = user.getPassword();
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // µ÷ÕûÈÕÆÚ¸ñÊ½String
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½String
 																	// to Date
 		Date userBirthday = new Date();
 		// System.out.println(birthday);
@@ -324,7 +323,7 @@ public class DBQuerrier {
 		// for(Pictures pictures :picList)
 		// System.out.println(pictures.getAddress());
 
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<Pictures> picListWant = new ArrayList<Pictures>();
 		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
@@ -343,7 +342,7 @@ public class DBQuerrier {
 		query.setString(0, tag);
 		List<PicTag> picList = query.list();
 		System.out.println(tag);
-		int pageContain = 2; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 2; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 
 		List<PicTag> picListWant = new ArrayList<PicTag>();
@@ -366,7 +365,7 @@ public class DBQuerrier {
 		// System.out.println(pictures.getTitle());
 		session.save(pictures);
 		tx.commit();
-		// ÉèÖÃ±êÇ©
+		// ï¿½ï¿½ï¿½Ã±ï¿½Ç©
 		String singleTag[] = tags.split(",");
 		// System.out.println(singleTag.length);
 
@@ -384,7 +383,7 @@ public class DBQuerrier {
 
 		File folder = new File("F:\\files\\hahahah");
 		if (folder.exists()) {
-			// System.out.println("ÓÐÁË");
+			// System.out.println("ï¿½ï¿½ï¿½ï¿½");
 		} else {
 			folder.mkdirs();
 			// System.out.println("makedir");
@@ -416,7 +415,7 @@ public class DBQuerrier {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
 		String hql = "from PicLiked where id.picId=? and id.userId=?";
-		Query query = ((SharedSessionContract) session).createQuery(hql); // ÕÒµ½ËùÒªÉ¾³ýµÄÐÐ
+		Query query = ((SharedSessionContract) session).createQuery(hql); // ï¿½Òµï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setInteger(0, picId);
 		query.setInteger(1, userId);
 		List<PicLiked> PicLiked = query.list();
@@ -426,7 +425,7 @@ public class DBQuerrier {
 			session.delete(PicLiked.get(0));
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("È¡¹Ø´íÎó");
+			System.out.println("È¡ï¿½Ø´ï¿½ï¿½ï¿½");
 			return false;
 		}
 
@@ -440,7 +439,7 @@ public class DBQuerrier {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
 		String hql = "from AlbumLiked where id.albumId=? and id.userId=?";
-		Query query = ((SharedSessionContract) session).createQuery(hql); // ÕÒµ½ËùÒªÉ¾³ýµÄÐÐ
+		Query query = ((SharedSessionContract) session).createQuery(hql); // ï¿½Òµï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setInteger(0, albumId);
 		query.setInteger(1, userId);
 		List<AlbumLiked> AlbumLiked = query.list();
@@ -450,7 +449,7 @@ public class DBQuerrier {
 			session.delete(AlbumLiked.get(0));
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("È¡¹Ø´íÎó");
+			System.out.println("È¡ï¿½Ø´ï¿½ï¿½ï¿½");
 			return false;
 		}
 
@@ -472,7 +471,7 @@ public class DBQuerrier {
 public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		
 		Session session=sessionStart();
-		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //²éÕÒÊÇ·ñ¸ÄÌõÔÞÒÑ´æÔÚ
+		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
         Query query = ((SharedSessionContract) session).createQuery(hql);  
         query.setInteger(0, picId);
         query.setInteger(1, userId);
@@ -485,7 +484,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		session.save(picLiked);
 		tx1.commit();
 		}
-		else System.out.println("ÒÑµã¹ýÔÞ");
+		else System.out.println("ï¿½Ñµï¿½ï¿½ï¿½ï¿½");
 		return true;
 	}
 
@@ -518,7 +517,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(picComment);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("ÆÀÂÛÊ§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -563,7 +562,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		query.setInteger(0, userId);
 		List<GroupMem> groups = query.list();
 
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<GroupMem> groupMemListWant = new ArrayList<GroupMem>();
 		for (int i = fisrt; i < pageContain + fisrt && i < groups.size(); i++) {
@@ -606,7 +605,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		List<Groups> groups = query.list();
 		// System.out.println(groups.get(2).getTheme());
 
-		int pageContain = 8; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 8; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<Groups> groupListWant = new ArrayList<Groups>();
 		for (int i = fisrt; i < pageContain + fisrt && i < groups.size(); i++) {
@@ -629,7 +628,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(groups);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("´´½¨Ê§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return null;
 		}
 
@@ -649,7 +648,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(groupMem);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("¼ÓÈëÊ§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -663,7 +662,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
 		String hql = "from GroupMem where id.userId=? and id.groupId=?";
-		Query query = ((SharedSessionContract) session).createQuery(hql); // ÕÒµ½ËùÒªÉ¾³ýµÄÐÐ
+		Query query = ((SharedSessionContract) session).createQuery(hql); // ï¿½Òµï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		query.setInteger(0, userId);
 		query.setInteger(1, groupId);
 		List<GroupMem> GroupMemWant = query.list();
@@ -673,7 +672,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.delete(GroupMemWant.get(0));
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("ÍË³öÊ§°Ü");
+			System.out.println("ï¿½Ë³ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -720,7 +719,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(GroupComment);
 		} catch (Exception e) {
 			// TODO: handle exception
-			// System.out.println("ÆÀÂÛÊ§°Ü");
+			// System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -780,7 +779,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		List<Albums> albums = query.list();
 		// for(Albums Albummm:Albums)
 		// System.out.println(Albummm.getTheme());
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<Albums> albumListWant = new ArrayList<Albums>();
 		for (int i = fisrt; i < pageContain + fisrt && i < albums.size(); i++) {
@@ -802,7 +801,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(albums);
 		} catch (Exception e) {
 			// TODO: handle exception
-			// System.out.println("´´½¨Ê§°Ü");
+			// System.out.println("ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -834,7 +833,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(albumIncluded);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Ìí¼ÓÊ§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 
@@ -863,7 +862,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 
 		
 		Session session=sessionStart();
-		String hql = "from AlbumLiked where id.albumId = ? and id.userId = ?";                                   //²éÕÒÊÇ·ñ¸ÄÌõÔÞÒÑ´æÔÚ
+		String hql = "from AlbumLiked where id.albumId = ? and id.userId = ?";                                   //ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
         Query query = ((SharedSessionContract) session).createQuery(hql);  
         query.setInteger(0, albumId);
         query.setInteger(1, userId);
@@ -880,7 +879,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 			session.save(albumLiked);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Ìí¼ÓÊ§°Ü");
+			System.out.println("ï¿½ï¿½ï¿½Ê§ï¿½ï¿½");
 			return false;
 		}
 		tx.commit();
@@ -892,7 +891,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 //public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 //		
 //		Session session=sessionStart();
-//		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //²éÕÒÊÇ·ñ¸ÄÌõÔÞÒÑ´æÔÚ
+//		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½
 //        Query query = ((SharedSessionContract) session).createQuery(hql);  
 //        query.setInteger(0, picId);
 //        query.setInteger(1, userId);
@@ -905,7 +904,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 //		session.save(picLiked);
 //		tx1.commit();
 //		}
-//		else System.out.println("ÒÑµã¹ýÔÞ");
+//		else System.out.println("ï¿½Ñµï¿½ï¿½ï¿½ï¿½");
 //		return true;
 //	}
 
@@ -931,7 +930,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 	// return getHotSharePicsWithIndex(1);
 	// }
 	//
-	public static List<Pictures> getMomentSharePicsWithIndex(int index) { // ×îÐÂÕÕÆ¬
+	public static List<Pictures> getMomentSharePicsWithIndex(int index) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
 		Session session = sessionStart();
 		String hql = "from Pictures order by postDate desc";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
@@ -940,7 +939,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		// for(Pictures pictures :picList)
 		// System.out.println(pictures.getPostDate());
 
-		int pageContain = 8; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 8; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<Pictures> picListWant = new ArrayList<Pictures>();
 		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
@@ -952,7 +951,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 
 	}
 
-	public static List<Pictures> getDiscoverPics() { // Ëæ»ú³öÏÖ
+	public static List<Pictures> getDiscoverPics() { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		Session session = sessionStart();
 		String hql = "from Pictures order by rand() ";
@@ -962,7 +961,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		// for(Pictures pictures :picList)
 		// System.out.println(pictures.getPostDate());
 
-		int pageContain = 8; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 8; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = 0;
 		List<Pictures> picListWant = new ArrayList<Pictures>();
 		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
@@ -979,7 +978,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Query query = ((SharedSessionContract) session).createQuery(hql);
 		List<Groups> groupList = query.list();
 
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		List<Groups> groupListWant = new ArrayList<Groups>();
 		for (int i = 0; i < pageContain && i < groupList.size(); i++) {
 			groupListWant.add(groupList.get(i));
@@ -996,7 +995,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Query query = ((SharedSessionContract) session).createQuery(hql);
 		List<Albums> AlbumsList = query.list();
 
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		List<Albums> AlbumsListWant = new ArrayList<Albums>();
 		for (int i = 0; i < pageContain && i < AlbumsList.size(); i++) {
 			AlbumsListWant.add(AlbumsList.get(i));
@@ -1014,7 +1013,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Query query = ((SharedSessionContract) session).createQuery(hql);
 		query.setInteger(0, userId);
 		List<PicLiked> picList = query.list();
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 
 		List<Pictures> picListWant = new ArrayList<Pictures>();
@@ -1033,17 +1032,17 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Session session = sessionStart();
 		String sql = "select pic_id from (select pic_id as pic_id ,count(distinct user_id) as likedCount from pic_liked group by pic_id order by likedCount desc)as countlist";
 		Query query = ((SharedSessionContract) session).createSQLQuery(sql);
-		List<Integer> picList = query.list(); // µÃµ½ÕÕÆ¬±àºÅ
+		List<Integer> picList = query.list(); // ï¿½Ãµï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½
 
 		// for(Integer hotPic :picList)
 		// System.out.println(hotPic);
 		//
 
-		int pageContain = 8; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 8; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 		List<Pictures> picListWant = new ArrayList<Pictures>();
 		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
-			picListWant.add(getPicWithPicId(picList.get(i))); // Í¨¹ý±àºÅ·µ»ØÕÕÆ¬Àà
+			picListWant.add(getPicWithPicId(picList.get(i))); // Í¨ï¿½ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½
 		}
 		// for(Pictures pictures :picListWant)
 		// System.out.println(pictures.getPostDate());
@@ -1059,7 +1058,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Query query = ((SharedSessionContract) session).createQuery(hql);
 		query.setInteger(0, userId);
 		List<AlbumLiked> albumList = query.list();
-		int pageContain = 9; // Ò»Ò³ÏÔÊ¾Í¼Æ¬ÊýÁ¿
+		int pageContain = 9; // Ò»Ò³ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		int fisrt = (index) * pageContain;
 
 		List<AlbumLiked> albumListWant = new ArrayList<AlbumLiked>();
