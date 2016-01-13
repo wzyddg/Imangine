@@ -64,7 +64,8 @@ public class Like extends HttpServlet {
 		else if(instruction[1].equals("album")&&instruction[0].equals("2"))
 			DBQuerrier.removeAlubmLikedWithPicIdNUserId(itemId, users.getUserId());
 		else ;
-			
+		
+			//TODO: add friend and group
 	}
 
 }

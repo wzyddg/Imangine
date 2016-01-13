@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.catalina.User;
-import org.apache.catalina.authenticator.SavedRequest;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,8 +15,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
-import com.mysql.fabric.xmlrpc.base.Member;
 
 import imangine.AlbumIncluded;
 import imangine.AlbumIncludedId;
@@ -76,7 +71,7 @@ public class DBQuerrier {
 		// System.out.println(a.size());
 		// getAlbumLikeUserIdsWithAlbumId(1);
 		// register("����","wzysddg");
-//		setPicLikeWithPicIdNUserId(67,20);
+		// setPicLikeWithPicIdNUserId(67,20);
 		// getUserwithuserId(2);
 		// updateUserInfo(2,
 		// "������","C:��Ƭ������",null,"shanghai","male","��TM�����Ұ�������","1999-05-18");
@@ -91,7 +86,15 @@ public class DBQuerrier {
 		// setGroupCommentWithGroupIdNUserIdNContent(4, 2, "�ðײ˶������ˣ�");
 		// setAlbumWithSetterIdNThemeNDescr(13, "��Ϸ", "��Ҷ��������ʹ֮��");
 		// addPicToAlbumWithPicId(20, 4);
-		 setAlbumLikeWithAlbumIdNUserId(4, 14);
+		// setAlbumLikeWithAlbumIdNUserId(4, 14);
+//		Albums albums = getAlbumWithAlbumId(4);
+//		System.out.println(albums.getPicNum() + " "
+//				+ albums.getUsers().getUserName());
+		
+		setPicCommentWithPicIdNUserIdNContent(36, 16, "MW 2016.1.5 1102");
+		System.out.println("over1");
+//		setPicCommentWithPicIdNUserIdNContent(36, 16, "MW 2016.1.5 10:32");
+//		System.out.println("over");
 		// quitGroupWithUserIdNGroupId(13, 4);
 		// setPicWithAddressNTitleNTagsNDescriptionNposterId("dd111`",
 		// "das222d",
@@ -308,7 +311,7 @@ public class DBQuerrier {
 		query.setInteger(0, picId);
 		List<Pictures> picture = query.list();
 		// System.out.println(picture.get(0).getAddress());
-		return (picture.size()==0 ? null : picture.get(0));
+		return (picture.size() == 0 ? null : picture.get(0));
 	}
 
 	public static List<Pictures> getPicsWithPosterIdNIndex(Integer posterId,
@@ -467,24 +470,24 @@ public class DBQuerrier {
 		return useridList;
 	}
 
-	
-public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
-		
-		Session session=sessionStart();
-		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //�����Ƿ�������Ѵ���
-        Query query = ((SharedSessionContract) session).createQuery(hql);  
-        query.setInteger(0, picId);
-        query.setInteger(1, userId);
-        List<PicLiked> useridList = query.list();  
-		if(useridList.size() == 0){
-		Transaction tx1 = session.beginTransaction();
-		PicLikedId picLikedId = new PicLikedId(picId, userId);
-		PicLiked picLiked = new PicLiked(picLikedId, getPicWithPicId(picId));
-//		System.out.println(picLiked.getId().getPicId()+"dsasadas");
-		session.save(picLiked);
-		tx1.commit();
-		}
-		else System.out.println("�ѵ����");
+	public static Boolean setPicLikeWithPicIdNUserId(Integer picId,
+			Integer userId) {
+
+		Session session = sessionStart();
+		String hql = "from PicLiked where id.picId = ? and id.userId = ?"; // �����Ƿ�������Ѵ���
+		Query query = ((SharedSessionContract) session).createQuery(hql);
+		query.setInteger(0, picId);
+		query.setInteger(1, userId);
+		List<PicLiked> useridList = query.list();
+		if (useridList.size() == 0) {
+			Transaction tx1 = session.beginTransaction();
+			PicLikedId picLikedId = new PicLikedId(picId, userId);
+			PicLiked picLiked = new PicLiked(picLikedId, getPicWithPicId(picId));
+			// System.out.println(picLiked.getId().getPicId()+"dsasadas");
+			session.save(picLiked);
+			tx1.commit();
+		} else
+			System.out.println("�ѵ����");
 		return true;
 	}
 
@@ -522,7 +525,10 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		}
 
 		tx1.commit();
+		System.out.println("setPicCommentWithPicIdNUserIdNContent");
+		session.close();
 		return true;
+		
 	}
 
 	/**
@@ -582,7 +588,7 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		query.setInteger(0, groupId);
 		List<Groups> groups = query.list();
 		// System.out.println(groups.get(0).getTheme());
-		return (groups.size()==0 ? null : groups.get(0));
+		return (groups.size() == 0 ? null : groups.get(0));
 
 	}
 
@@ -752,8 +758,9 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 		Query query = ((SharedSessionContract) session).createQuery(hql);
 		query.setInteger(0, albumId);
 		List<Albums> Album = query.list();
-		// System.out.println(Album.get(0).getTheme());
-		return (Album.size()==0 ? null : Album.get(0));
+		// Albums resulAlbums = (Albums) query.uniqueResult();
+		return (Album.size() == 0 ? null : Album.get(0));
+		// return resulAlbums;
 	}
 
 	public static List<Albums> getAlbumsWithSetterId(Integer setterId) {
@@ -860,53 +867,53 @@ public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
 	public static Boolean setAlbumLikeWithAlbumIdNUserId(Integer albumId,
 			Integer userId) {
 
-		
-		Session session=sessionStart();
-		String hql = "from AlbumLiked where id.albumId = ? and id.userId = ?";                                   //�����Ƿ�������Ѵ���
-        Query query = ((SharedSessionContract) session).createQuery(hql);  
-        query.setInteger(0, albumId);
-        query.setInteger(1, userId);
-        List<AlbumLiked> useridList = query.list();  
-//        System.out.println(useridList.size());
-		if(useridList.size() == 0){
-		
+		Session session = sessionStart();
+		String hql = "from AlbumLiked where id.albumId = ? and id.userId = ?"; // �����Ƿ�������Ѵ���
+		Query query = ((SharedSessionContract) session).createQuery(hql);
+		query.setInteger(0, albumId);
+		query.setInteger(1, userId);
+		List<AlbumLiked> useridList = query.list();
+		// System.out.println(useridList.size());
+		if (useridList.size() == 0) {
 
-		Transaction tx = session.beginTransaction();
-		AlbumLikedId albumLikedId = new AlbumLikedId(albumId, userId);
-		AlbumLiked albumLiked = new AlbumLiked(albumLikedId,
-				getAlbumWithAlbumId(albumId), getUserwithuserId(userId));
-		try {
-			session.save(albumLiked);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("���ʧ��");
-			return false;
-		}
-		tx.commit();
-		}
-		else System.out.println("liked alerady!");
+			Transaction tx = session.beginTransaction();
+			AlbumLikedId albumLikedId = new AlbumLikedId(albumId, userId);
+			AlbumLiked albumLiked = new AlbumLiked(albumLikedId,
+					getAlbumWithAlbumId(albumId), getUserwithuserId(userId));
+			try {
+				session.save(albumLiked);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("���ʧ��");
+				return false;
+			}
+			tx.commit();
+		} else
+			System.out.println("liked alerady!");
 		return true;
 	}
-	
-//public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer userId) {
-//		
-//		Session session=sessionStart();
-//		String hql = "from PicLiked where id.picId = ? and id.userId = ?";                                   //�����Ƿ�������Ѵ���
-//        Query query = ((SharedSessionContract) session).createQuery(hql);  
-//        query.setInteger(0, picId);
-//        query.setInteger(1, userId);
-//        List<PicLiked> useridList = query.list();  
-//		if(useridList.size() == 0){
-//		Transaction tx1 = session.beginTransaction();
-//		PicLikedId picLikedId = new PicLikedId(picId, userId);
-//		PicLiked picLiked = new PicLiked(picLikedId, getPicWithPicId(picId));
-////		System.out.println(picLiked.getId().getPicId()+"dsasadas");
-//		session.save(picLiked);
-//		tx1.commit();
-//		}
-//		else System.out.println("�ѵ����");
-//		return true;
-//	}
+
+	// public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer
+	// userId) {
+	//
+	// Session session=sessionStart();
+	// String hql = "from PicLiked where id.picId = ? and id.userId = ?";
+	// //�����Ƿ�������Ѵ���
+	// Query query = ((SharedSessionContract) session).createQuery(hql);
+	// query.setInteger(0, picId);
+	// query.setInteger(1, userId);
+	// List<PicLiked> useridList = query.list();
+	// if(useridList.size() == 0){
+	// Transaction tx1 = session.beginTransaction();
+	// PicLikedId picLikedId = new PicLikedId(picId, userId);
+	// PicLiked picLiked = new PicLiked(picLikedId, getPicWithPicId(picId));
+	// // System.out.println(picLiked.getId().getPicId()+"dsasadas");
+	// session.save(picLiked);
+	// tx1.commit();
+	// }
+	// else System.out.println("�ѵ����");
+	// return true;
+	// }
 
 	/**
 	 * @new interfaces
