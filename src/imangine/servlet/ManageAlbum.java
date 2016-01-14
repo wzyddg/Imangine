@@ -1,6 +1,10 @@
 package imangine.servlet;
 
+import imangine.database.dao.DataAccessObject;
+
 import java.io.IOException;
+import java.security.acl.Group;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +31,7 @@ public class ManageAlbum extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
@@ -34,6 +39,12 @@ public class ManageAlbum extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String action = request.getParameter("action");
+		
+
 	}
 
+	Group newGroup(HttpServletRequest request, HttpServletResponse response){
+		return null;
+	}
 }
