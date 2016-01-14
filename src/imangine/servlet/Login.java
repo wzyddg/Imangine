@@ -1,6 +1,6 @@
 package imangine.servlet;
 
-import imangine.database.entity.Users;
+import imangine.database.entity.User;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
 		
 //		System.out.println(request);
 //		System.out.println(name+passWord);
-		Users result=DataAccessObject.login(name, passWord);
+		User result=DataAccessObject.login(name, passWord);
 		if(result==null){
 			request.setAttribute("LoginSuccess", new Boolean(false));
 			request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -3,17 +3,17 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="imangine.database.entity.AlbumLiked" table="album_liked" catalog="imangine" optimistic-lock="version">
-        <composite-id name="id" class="imangine.database.entity.AlbumLikedId">
-            <key-property name="albumId" type="int">
-                <column name="album_id" />
+    <class name="imangine.database.entity.PictureLiked" table="picture_liked" catalog="imangine" optimistic-lock="version">
+        <composite-id name="id" class="imangine.database.entity.PictureLikedId">
+            <key-property name="pictureId" type="int">
+                <column name="picture_id" />
             </key-property>
             <key-property name="userId" type="java.lang.Integer">
                 <column name="user_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="album" class="imangine.database.entity.Album" update="false" insert="false" fetch="select">
-            <column name="album_id" not-null="true" />
+        <many-to-one name="picture" class="imangine.database.entity.Picture" update="false" insert="false" fetch="select">
+            <column name="picture_id" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="imangine.database.entity.User" update="false" insert="false" fetch="select">
             <column name="user_id" />

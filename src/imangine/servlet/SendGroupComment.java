@@ -1,6 +1,6 @@
 package imangine.servlet;
 
-import imangine.database.entity.Users;
+import imangine.database.entity.User;
 
 import java.io.IOException;
 
@@ -45,7 +45,7 @@ public class SendGroupComment extends HttpServlet {
 				request.getRequestDispatcher("single-group.jsp?id="+groupId).forward(request, response);
 				// TODO: handle exception
 			}
-			Users users=(Users) request.getSession().getAttribute("userLoginStatus");
+			User users=(User) request.getSession().getAttribute("userLoginStatus");
 			String comCon=request.getParameter("comCon");
 			if(users==null||comCon==null||comCon.equals("")){
 				request.getSession().setAttribute("GroupComStatus", new Integer(-1));

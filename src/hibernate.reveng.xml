@@ -2,16 +2,21 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-catalog="imangine" match-name="album_included"/>
-  <table-filter match-catalog="imangine" match-name="album_liked"/>
-  <table-filter match-catalog="imangine" match-name="albums"/>
-  <table-filter match-catalog="imangine" match-name="friends"/>
-  <table-filter match-catalog="imangine" match-name="group_comment"/>
-  <table-filter match-catalog="imangine" match-name="group_mem"/>
-  <table-filter match-catalog="imangine" match-name="groups"/>
-  <table-filter match-catalog="imangine" match-name="pic_comment"/>
-  <table-filter match-catalog="imangine" match-name="pic_liked"/>
-  <table-filter match-catalog="imangine" match-name="pic_tag"/>
-  <table-filter match-catalog="imangine" match-name="pictures"/>
-  <table-filter match-catalog="imangine" match-name="users"/>
+	<table-filter match-name="album" match-catalog="imangine"></table-filter>
+	<table-filter match-name="album_comment" match-catalog="imangine"></table-filter>
+	<table-filter match-name="album_included"
+		match-catalog="imangine">
+	</table-filter>
+	<table-filter match-name="album_liked" match-catalog="imangine"></table-filter>
+	<table-filter match-name="friend" match-catalog="imangine"></table-filter>
+	<table-filter match-name="group" match-catalog="imangine"></table-filter>
+	<table-filter match-name="group_comment" match-catalog="imangine"></table-filter>
+	<table-filter match-name="group_member" match-catalog="imangine"></table-filter>
+	<table-filter match-name="picture" match-catalog="imangine"></table-filter>
+	<table-filter match-name="picture_comment"
+		match-catalog="imangine">
+	</table-filter>
+	<table-filter match-name="picture_liked" match-catalog="imangine"></table-filter>
+	<table-filter match-name="picture_tag" match-catalog="imangine"></table-filter>
+	<table-filter match-name="user" match-catalog="imangine"></table-filter>
 </hibernate-reverse-engineering>

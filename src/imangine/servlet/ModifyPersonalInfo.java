@@ -1,6 +1,6 @@
 package imangine.servlet;
 
-import imangine.database.entity.Users;
+import imangine.database.entity.User;
 
 import java.io.IOException;
 
@@ -50,7 +50,7 @@ public class ModifyPersonalInfo extends HttpServlet {
 		String name = request.getParameter("name");
 		String opsw = request.getParameter("opassword");
 		String npsw = request.getParameter("npassword");
-		Users user = (Users) request.getSession().getAttribute(
+		User user = (User) request.getSession().getAttribute(
 				"userLoginStatus");
 		String cnpsw = request.getParameter("cnpassword");
 		String gender = request.getParameter("gender");
@@ -97,7 +97,7 @@ public class ModifyPersonalInfo extends HttpServlet {
 					user.getBirthdayString());
 
 			request.getSession().setAttribute("userLoginStatus",
-					DataAccessObject.getUserwithuserId(user.getUserId()));
+					DataAccessObject.getUserWtihUserId(user.getUserId()));
 			response.sendRedirect("personal-modify.jsp?error=0");
 		}
 

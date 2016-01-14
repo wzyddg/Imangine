@@ -3,13 +3,13 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="imangine.database.entity.GroupComment" table="group_comment" catalog="imangine" optimistic-lock="version">
+    <class name="imangine.database.entity.AlbumComment" table="album_comment" catalog="imangine" optimistic-lock="version">
         <id name="commentId" type="java.lang.Integer">
             <column name="comment_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="group" class="imangine.database.entity.Group" fetch="select">
-            <column name="group_id" not-null="true" />
+        <many-to-one name="album" class="imangine.database.entity.Album" fetch="select">
+            <column name="album_id" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="imangine.database.entity.User" fetch="select">
             <column name="user_id" not-null="true" />

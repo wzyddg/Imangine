@@ -1,6 +1,6 @@
 package imangine.servlet;
 
-import imangine.database.entity.Users;
+import imangine.database.entity.User;
 import imangine.database.dao.DataAccessObject;
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class Like extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Users users  = (Users) request.getSession().getAttribute("userLoginStatus");
+		User users  = (User) request.getSession().getAttribute("userLoginStatus");
 		if(users==null)
 			return;
 		

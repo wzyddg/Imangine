@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-14 10:25:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="imangine.database.entity.GroupMem" table="group_mem" catalog="imangine" optimistic-lock="version">
-        <composite-id name="id" class="imangine.database.entity.GroupMemId">
+    <class name="imangine.database.entity.GroupMember" table="group_member" catalog="imangine" optimistic-lock="version">
+        <composite-id name="id" class="imangine.database.entity.GroupMemberId">
             <key-property name="groupId" type="int">
                 <column name="group_id" />
             </key-property>
@@ -12,10 +12,10 @@
                 <column name="user_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="groups" class="imangine.database.entity.Groups" update="false" insert="false" fetch="select">
+        <many-to-one name="group" class="imangine.database.entity.Group" update="false" insert="false" fetch="select">
             <column name="group_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="users" class="imangine.database.entity.Users" update="false" insert="false" fetch="select">
+        <many-to-one name="user" class="imangine.database.entity.User" update="false" insert="false" fetch="select">
             <column name="user_id" />
         </many-to-one>
     </class>

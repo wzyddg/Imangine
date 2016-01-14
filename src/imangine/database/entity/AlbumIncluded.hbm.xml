@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-14 10:25:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="imangine.database.entity.AlbumIncluded" table="album_included" catalog="imangine" optimistic-lock="version">
         <composite-id name="id" class="imangine.database.entity.AlbumIncludedId">
             <key-property name="albumId" type="int">
                 <column name="album_id" />
             </key-property>
-            <key-property name="picId" type="java.lang.Integer">
-                <column name="pic_id" />
+            <key-property name="pictureId" type="java.lang.Integer">
+                <column name="picture_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="albums" class="imangine.database.entity.Albums" update="false" insert="false" fetch="select">
+        <many-to-one name="album" class="imangine.database.entity.Album" update="false" insert="false" fetch="select">
             <column name="album_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="pictures" class="imangine.database.entity.Pictures" update="false" insert="false" fetch="select">
-            <column name="pic_id" />
+        <many-to-one name="picture" class="imangine.database.entity.Picture" update="false" insert="false" fetch="select">
+            <column name="picture_id" />
         </many-to-one>
     </class>
 </hibernate-mapping>

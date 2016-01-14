@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="imangine.database.entity.User" table="user" catalog="imangine" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" length="32" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="32" not-null="true" />
+        </property>
+        <property name="avatarPath" type="string">
+            <column name="avatar_path" length="128" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="128" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="32" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="birthday" type="timestamp">
+            <column name="birthday" length="19" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <set name="groupComments" table="group_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.GroupComment" />
+        </set>
+        <set name="albums" table="album" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="setter_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.Album" />
+        </set>
+        <set name="groupMembers" table="group_member" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.GroupMember" />
+        </set>
+        <set name="friendsForFriendId" table="friend" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="friend_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.Friend" />
+        </set>
+        <set name="pictureComments" table="picture_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.PictureComment" />
+        </set>
+        <set name="groups" table="group" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="setter_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.Group" />
+        </set>
+        <set name="albumLikeds" table="album_liked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.AlbumLiked" />
+        </set>
+        <set name="friendsForMyId" table="friend" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="my_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.Friend" />
+        </set>
+        <set name="albumComments" table="album_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.AlbumComment" />
+        </set>
+        <set name="pictures" table="picture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="poster_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.Picture" />
+        </set>
+        <set name="pictureLikeds" table="picture_liked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.PictureLiked" />
+        </set>
+    </class>
+</hibernate-mapping>

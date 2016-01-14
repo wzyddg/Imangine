@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-14 10:25:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="imangine.database.entity.Friends" table="friends" catalog="imangine" optimistic-lock="version">
-        <composite-id name="id" class="imangine.database.entity.FriendsId">
+    <class name="imangine.database.entity.Friend" table="friend" catalog="imangine" optimistic-lock="version">
+        <composite-id name="id" class="imangine.database.entity.FriendId">
             <key-property name="myId" type="int">
                 <column name="my_id" />
             </key-property>
@@ -12,10 +12,10 @@
                 <column name="friend_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="usersByFriendId" class="imangine.database.entity.Users" update="false" insert="false" fetch="select">
+        <many-to-one name="userByFriendId" class="imangine.database.entity.User" update="false" insert="false" fetch="select">
             <column name="friend_id" />
         </many-to-one>
-        <many-to-one name="usersByMyId" class="imangine.database.entity.Users" update="false" insert="false" fetch="select">
+        <many-to-one name="userByMyId" class="imangine.database.entity.User" update="false" insert="false" fetch="select">
             <column name="my_id" not-null="true" />
         </many-to-one>
     </class>

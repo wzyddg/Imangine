@@ -1,6 +1,6 @@
 package imangine.servlet;
 
-import imangine.database.entity.Users;
+import imangine.database.entity.User;
 
 import java.io.IOException;
 
@@ -50,7 +50,7 @@ public class SendPictureComment extends HttpServlet {
 			request.getRequestDispatcher("single.jsp?id="+picId).forward(request, response);
 			// TODO: handle exception
 		}
-		Users users=(Users) request.getSession().getAttribute("userLoginStatus");
+		User users=(User) request.getSession().getAttribute("userLoginStatus");
 		String comCon=request.getParameter("comCon");
 		if(users==null||comCon==null||comCon.equals("")){
 			request.getSession().setAttribute("PicComStatus", new Integer(-1));
@@ -59,7 +59,7 @@ public class SendPictureComment extends HttpServlet {
 		}
 		else {
 			request.getSession().setAttribute("PicComStatus", new Integer(1));
-			DataAccessObject.setPicCommentWithPicIdNUserIdNContent(picId,users.getUserId(),comCon);
+			DataAccessObject.setPictureCommentWithPicIdNUserIdNContent(picId,users.getUserId(),comCon);
 //			request.getRequestDispatcher("single.jsp?id="+picId).forward(request, response);
 			response.sendRedirect("single.jsp?id="+picId);
 		}

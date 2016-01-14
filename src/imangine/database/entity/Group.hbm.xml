@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-1-14 10:25:48 by Hibernate Tools 4.3.1 -->
+<!-- Generated 2016-1-14 13:50:25 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="imangine.database.entity.Groups" table="groups" catalog="imangine" optimistic-lock="version">
+    <class name="imangine.database.entity.Group" table="group" catalog="imangine" optimistic-lock="version">
         <id name="groupId" type="java.lang.Integer">
             <column name="group_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="users" class="imangine.database.entity.Users" fetch="select">
+        <many-to-one name="user" class="imangine.database.entity.User" fetch="select">
             <column name="setter_id" not-null="true" />
         </many-to-one>
         <property name="name" type="string">
-            <column name="name" length="40" not-null="true" unique="true" />
+            <column name="name" length="64" not-null="true" unique="true" />
         </property>
-        <property name="membership" type="java.lang.Integer">
-            <column name="membership" />
+        <property name="memberNum" type="java.lang.Integer">
+            <column name="member_num" />
         </property>
         <property name="setDate" type="timestamp">
             <column name="set_date" length="19" not-null="true" />
         </property>
         <property name="theme" type="string">
-            <column name="theme" length="20" not-null="true" />
+            <column name="theme" length="32" not-null="true" />
         </property>
         <set name="groupComments" table="group_comment" inverse="true" lazy="true" fetch="select">
             <key>
@@ -29,11 +29,11 @@
             </key>
             <one-to-many class="imangine.database.entity.GroupComment" />
         </set>
-        <set name="groupMems" table="group_mem" inverse="true" lazy="true" fetch="select">
+        <set name="groupMembers" table="group_member" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="group_id" not-null="true" />
             </key>
-            <one-to-many class="imangine.database.entity.GroupMem" />
+            <one-to-many class="imangine.database.entity.GroupMember" />
         </set>
     </class>
 </hibernate-mapping>
