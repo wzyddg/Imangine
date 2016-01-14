@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-1-14 10:25:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="imangine.database.entity.Pictures" table="pictures" catalog="imangine" optimistic-lock="version">
+        <id name="picId" type="java.lang.Integer">
+            <column name="pic_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="imangine.database.entity.Users" fetch="select">
+            <column name="poster_id" />
+        </many-to-one>
+        <property name="path" type="string">
+            <column name="path" not-null="true" />
+        </property>
+        <property name="uploadDate" type="timestamp">
+            <column name="upload_date" length="19" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="40" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <set name="picLikeds" table="pic_liked" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pic_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.PicLiked" />
+        </set>
+        <set name="picComments" table="pic_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pic_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.PicComment" />
+        </set>
+        <set name="picTags" table="pic_tag" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pic_id" not-null="true" />
+            </key>
+            <one-to-many class="imangine.database.entity.PicTag" />
+        </set>
+        <set name="albumIncludeds" table="album_included" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pic_id" />
+            </key>
+            <one-to-many class="imangine.database.entity.AlbumIncluded" />
+        </set>
+    </class>
+</hibernate-mapping>
