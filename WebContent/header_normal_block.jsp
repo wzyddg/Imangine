@@ -32,7 +32,7 @@
             <div class="top-menu">
                 <ul>
                     <li><a href="picture_list.jsp">Picture</a></li>
-                    <li><a class="active" href="album_list.jsp">Album</a></li>
+                    <li><a href="album_list.jsp">Album</a></li>
                     <li><a href="group_list.jsp">Group</a></li>
                     <li><a href="search.jsp">Search</a></li>
                     <li><a href="about_imangine.jsp">About us</a></li>
@@ -78,7 +78,7 @@
             <div class="top-menu">
                 <ul>
                     <li><a href="picture_list.jsp">Picture</a></li>
-                    <li><a class="active" href="album_list.jsp">Album</a></li>
+                    <li><a href="album_list.jsp">Album</a></li>
                     <li><a href="group_list.jsp">Group</a></li>
                     <li><a href="search.jsp">Search</a></li>
                     <li><a href="about_imangine.jsp">About us</a></li>

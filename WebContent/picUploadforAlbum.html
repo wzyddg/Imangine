@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>setAlbum</title>
-<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
+<title>picUpload-for Album</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 <body>
+
 	<div class="navigation-strip">
         <div class="container">
             <div class="nav_content">
@@ -64,12 +65,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span class="menu"></span>
                 <div class="top-menu">
                     <ul>
-                        <li><a href="pic.html">Picture</a></li>
+                        <li><a class="active" href="pic.html">Picture</a></li>
                         <li><a href="album.html">Album</a></li>
                         <li><a href="group.html">Group</a></li>
                         <li><a href="search.html">Search</a></li>
                         <li><a href="about.html">About us</a></li>
-
+                        <div class="clearfix"></div>
                     </ul>
                 </div>
                 <!-- script for menu -->
@@ -87,22 +88,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="content">
 		<div class="container">
-			<div id="login" style="margin-bottom: 30px;>
-                <form role="form" action="setAlbum" enctype="multipart/form-data" method="post">
+			<div id="login" style="padding:30px 0;">
+                Upload Picture to <span style="color: #ff5656">Album Name</span>
+                <br />
+                <form role="form" action="picUpload" enctype="multipart/form-data" method="post" style="margin-top: 5px;">
                     <div class="form-group">
-                        <label for="name">Album Title</label>
+                        <label for="name">Picture Title</label>
                         <input type="text" class="form-control" id="name"
-                               placeholder="Please input the album title...">
+                               placeholder="Please input the picture title...">
                     </div>
                     <div class="form-group">
-                        <label for="name">Album Description</label>
+                        <label for="name">Picture Description</label>
                         <textarea class="form-control" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <a href="#" class="input-file">Upload album cover...<input type="file" id="inputfile"></a>
+                        <a href="#" class="input-file">Browse...<input type="file" id="inputfile"></a>
                     </div>
-                    <button type="submit" class="btn-sub">Set it!</button>
-                    <br />
+                    <button class="btn-sub">Submit</button>
+
                 </form>
 
 			</div>

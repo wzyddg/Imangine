@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Single-Album</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -70,58 +71,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             border-radius: 20px;
 
         }
+        .single-top img
+        {
+            max-width:500px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-	<!-- header-section-starts -->
-	<div class="header" id="header">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="header-bottom">
-		<div class="container">
-		</div>
-	</div>
 	<div class="navigation-strip">
-		<div class="container">
-			<div class="nav_content">
-			<div class="home">
-					<a href="index.html"><img src="images/home1.png" alt="" /></a>
-				</div>
-				<!-- <div class="search">
-					<form>
-						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
-				</div> -->
-				<span class="menu"></span>
-				<div class="top-menu">
-					<ul>
-                        <li><a href="pic.html">Sharing</a></li>
-                        <li><a href="blog.html">Personal</a></li>
-                        <li><a href="portfolio.html">Tags</a></li>
-                        <li><a class="active"  href="album.html">Album</a></li>
+        <div class="container">
+            <div class="nav_content">
+                <div class="home">
+                    <a href="index.html"><img src="images/imangine.png" alt="" /></a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="reglogbar-user pull-right">
+                    <div class="userp">
+                        <a href="#"> <span>Jully Coco &nbsp;</span> </a>
+                        <a href="#"> <img src="images/user-p.png" /> </a>
+                    </div>
+                </div>
+                <span class="menu"></span>
+                <div class="top-menu">
+                    <ul>
+                        <li><a class="active" href="pic.html">Picture</a></li>
+                        <li><a href="album.html">Album</a></li>
                         <li><a href="group.html">Group</a></li>
-                        <li><a href="about.html">About Us</a></li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>
-				<!-- script for menu -->
-				<script>
-				$( "span.menu" ).click(function() {
-				  $( ".top-menu" ).slideToggle( "slow", function() {
-				    // Animation complete.
-				  });
-				});
-			    </script>
-			    <!-- script for menu -->
-				<div class="clearfix"></div>
-			</div>
-		</div>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <!-- script for menu -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".top-menu" ).slideToggle( "slow", function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script for menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
 	</div>
 	<div class="content">
 		<div class="container">
@@ -134,13 +132,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!--<span> </span>-->
 					</div>
 					<!-- /head-section -->	
-				<div class="single-top">
+				<div class="single-top ">
 					<img  src="images/cover1.jpg" alt=""/>
 				</div>
 				<div class="top-single">
 				<h2>The Discription of the Album.</h2>
+                <div class="pull-right"><a href="pic-modify.html">Album Management</a></div>
 					<div class="grid-single">
-						<div class="single-one"><span><i> </i>12/03/2014 </div></li>
+						<div class="single-one"><span><i> </i>12/03/2014 </span></div>
 						<div class="single-one"><span><a href="#"><i class="com"> </i>3</a></span></div>
 						<div class="single-one"><span><i class="four"> </i>400</span></div>
 						<div class="clearfix"> </div>
@@ -283,6 +282,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <a href="single.html"><div class="text"><div>钿头银篦击节碎 POST TIME :2014.99999999999999902.21</div></div></a>
                             </div>
                         </div>
+                        <div class="pull-right">
+                            <a href=""><label>View All</label></a>
+                        </div>
+
                         <div class="clearfix"></div>
                     </div>
 
@@ -308,6 +311,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <img  src="images/port4.jpg" alt=""/>
                     <img  src="images/port5.jpg" alt=""/>
                     <img  src="images/port6.jpg" alt=""/>
+                    <a href=""><label>View All</label></a>
                 </div>
                 <!--<div class="collected-album ">-->
                     <!--<img  src="images/album.png" alt=""/>-->

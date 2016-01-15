@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>setGroup</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,71 +44,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!-- header-section-starts -->
-	<div class="header" id="header">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
 
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="header-bottom">
-		<div class="container">
-		</div>
-	</div>
 	<div class="navigation-strip">
-		<div class="container">
-			<div class="nav_content">
-				<div class="home">
-					<a href="index.html"><img src="images/home1.png" alt="" /></a>
-				</div>
-				<!-- <div class="search">
-					<form>
-						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
-				</div> -->
-			<span class="menu"></span>
-				<div class="top-menu">
-					<ul>
-                        <li><a class="active" href="pic.html">Sharing</a></li>
-                        <li><a href="blog.html">Personal</a></li>
-                        <li><a href="portfolio.html">Tags</a></li>
+        <div class="container">
+            <div class="nav_content">
+                <div class="home">
+                    <a href="index.html"><img src="images/imangine.png" alt="" /></a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="reglogbar-user pull-right">
+                    <div class="userp">
+                        <span>Jully Coco &nbsp;</span>
+                        <a href="#"> <img src="images/user-p.png" /> </a>
+                    </div>
+                </div>
+                <span class="menu"></span>
+                <div class="top-menu">
+                    <ul>
+                        <li><a href="pic.html">Picture</a></li>
                         <li><a href="album.html">Album</a></li>
                         <li><a href="group.html">Group</a></li>
-                        <li><a href="about.html">About Us</a></li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>
-				<!-- script for menu -->
-				<script>
-				$( "span.menu" ).click(function() {
-				  $( ".top-menu" ).slideToggle( "slow", function() {
-				    // Animation complete.
-				  });
-				});
-			    </script>
-			    <!-- script for menu -->
-				<div class="clearfix"></div>
-			</div>
-		</div>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="about.html">About us</a></li>
+
+                    </ul>
+                </div>
+                <!-- script for menu -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".top-menu" ).slideToggle( "slow", function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script for menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
 	</div>
 	<div class="content">
 		<div class="container">
-			<div id="login">
+			<div id="login" style="margin-bottom: 30px;">
                 <form role="form" action="setGroup" enctype="multipart/form-data" method="post">
                     <div class="form-group">
-                        <label for="name">小组名称</label>
+                        <label for="name">Group Name</label>
                         <input type="text" class="form-control" id="name"
-                               placeholder="请输入小组名称">
+                               placeholder="Please input group name">
                     </div>
                     <div class="form-group">
-                        <label for="name">小组主题</label>
+                        <label for="name">Group Theme</label>
                         <input type="text" class="form-control" id="theme"
-                               placeholder="请输入小组主题">
+                               placeholder="Please">
                     </div>
-                    <button type="submit" class="btnsub">立即建立</button>
+                    <div class="form-group">
+                        <a href="#" class="input-file">Upload Group cover...<input type="file" id="inputfile"></a>
+                    </div>
+                    <button type="submit" class="btn-sub">Set it!</button>
                 </form>
 
 			</div>

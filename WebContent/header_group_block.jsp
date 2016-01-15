@@ -70,8 +70,8 @@
             </div>
             <div class="reglogbar-user pull-right">
                 <div class="userp">
-                    <a href="index.jsp"> <span>Jully Coco &nbsp;</span> </a>
-                    <a href="index.jsp"> <img src="images/user-p.png" /> </a>
+                    <a href="index.jsp"> <span><%=userLoginStatus.getUserName()%> &nbsp;</span> </a>
+                    <a href="index.jsp"> <img src='<%=userLoginStatus.getAvatarPath() %>' /> </a>
                 </div>
             </div>
             <span class="menu"></span>

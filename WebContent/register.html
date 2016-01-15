@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Register</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -15,7 +16,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!--webfont-->
-<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
  <script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event){		
@@ -43,54 +43,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!-- header-section-starts -->
-	<div class="header" id="header">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="header-bottom">
-		<div class="container">
-		</div>
-	</div>
+
 	<div class="navigation-strip">
-		<div class="container">
-			<div class="nav_content">
-				<div class="home">
-					<a href="index.html"><img src="images/home1.png" alt="" /></a>
-				</div>
-				<!-- <div class="search">
-					<form>
-						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
-				</div> -->
-			<span class="menu"></span>
-				<div class="top-menu">
-					<ul>
-                        <li><a href="pic.html">Sharing</a></li>
-                        <li><a href="blog.html">Personal</a></li>
-                        <li><a href="portfolio.html">Tags</a></li>
+        <div class="container">
+            <div class="nav_content">
+                <div class="home">
+                    <a href="index.html"><img src="images/imangine.png" alt="" /></a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+
+                <span class="menu"></span>
+                <div class="top-menu">
+                    <ul>
+                        <li><a href="pic.html">Picture</a></li>
                         <li><a href="album.html">Album</a></li>
                         <li><a href="group.html">Group</a></li>
-                        <li><a href="about.html">About Us</a></li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>
-				<!-- script for menu -->
-				<script>
-				$( "span.menu" ).click(function() {
-				  $( ".top-menu" ).slideToggle( "slow", function() {
-				    // Animation complete.
-				  });
-				});
-			    </script>
-			    <!-- script for menu -->
-				<div class="clearfix"></div>
-			</div>
-		</div>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="about.html">About us</a></li>
+
+                    </ul>
+                </div>
+                <!-- script for menu -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".top-menu" ).slideToggle( "slow", function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script for menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
 	</div>
 	<div class="content">
 		<div class="container">
@@ -109,28 +98,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<!--</form>-->
 
-                <form role="form" action="UserReg" enctype="multipart/form-data" method="post">
+                <form role="form" action="UserReg" enctype="multipart/form-data" method="post" style="padding: 30px 0;">
                     <div class="form-group">
-                        <label for="name">用户名（手机/邮箱）</label>
+                        <label for="name">User Name (Phone Number/E-mail)</label>
                         <input type="text" class="form-control" id="name"
-                               placeholder="请输入用户名">
+                               placeholder="Please input user name">
                     </div>
                     <div class="form-group">
-                        <label for="password">密码</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" id="password"
-                               placeholder="请输入密码">
+                               placeholder="Please input password">
                     </div>
                     <div class="form-group">
-                        <label for="password">确认密码</label>
+                        <label for="password">Confirm Password</label>
                         <input type="password" class="form-control" id="password"
-                               placeholder="请输入密码">
+                               placeholder="Please input password again">
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> 阅读并接受《Imangine协议》
+                            <input type="checkbox"> Read and accept - Imangine Agreement -
                         </label>
                     </div>
-                    <button type="submit" class="btnsub">提交</button>
+                    <button type="submit" class="btn-sub">Submit</button>
                 </form>
 
 			</div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Login</title>
+<title>setAlbum</title>
+<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,86 +41,73 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 });
 </script>
-    <style>
-        .inputbtn {
-            background-color: #ff5656;
-            color:#fff;
-            font-weight: 700;
-            font-family: "Microsoft YaHei";
-        }
-    </style>
 </head>
 <body>
-	<!-- header-section-starts -->
-	<div class="header" id="header">
-		<div class="container">
-			<div class="logo">
-				<a href="index.html"><img src="images/logo.png" alt="" /></a>
-
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="header-bottom">
-		<div class="container">
-		</div>
-	</div>
 	<div class="navigation-strip">
-		<div class="container">
-			<div class="nav_content">
-				<div class="home">
-					<a href="index.html"><img src="images/home1.png" alt="" /></a>
-				</div>
-				<!-- <div class="search">
-					<form>
-						<input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
-				</div> -->
-			<span class="menu"></span>
-				<div class="top-menu">
-					<ul>
-                        <li><a href="pic.html">Sharing</a></li>
-                        <li><a href="blog.html">Personal</a></li>
-                        <li><a href="portfolio.html">Tags</a></li>
+        <div class="container">
+            <div class="nav_content">
+                <div class="home">
+                    <a href="index.html"><img src="images/imangine.png" alt="" /></a>
+                </div>
+                <div class="search">
+                    <form>
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="reglogbar-user pull-right">
+                    <div class="userp">
+                        <span>Jully Coco &nbsp;</span>
+                        <a href="#"> <img src="images/user-p.png" /> </a>
+                    </div>
+                </div>
+                <span class="menu"></span>
+                <div class="top-menu">
+                    <ul>
+                        <li><a href="pic.html">Picture</a></li>
                         <li><a href="album.html">Album</a></li>
                         <li><a href="group.html">Group</a></li>
-                        <li><a href="about.html">About Us</a></li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>
-				<!-- script for menu -->
-				<script>
-				$( "span.menu" ).click(function() {
-				  $( ".top-menu" ).slideToggle( "slow", function() {
-				    // Animation complete.
-				  });
-				});
-			    </script>
-			    <!-- script for menu -->
-				<div class="clearfix"></div>
-			</div>
-		</div>
+                        <li><a href="search.html">Search</a></li>
+                        <li><a href="about.html">About us</a></li>
+
+                    </ul>
+                </div>
+                <!-- script for menu -->
+                <script>
+                    $( "span.menu" ).click(function() {
+                        $( ".top-menu" ).slideToggle( "slow", function() {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script for menu -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
 	</div>
 	<div class="content">
 		<div class="container">
-            <form role="form" action="UserLogin" enctype="multipart/form-data" method="post">
-                <div class="form-group">
-                    <label for="name">用户名（手机/邮箱）</label>
-                    <input type="text" class="form-control" id="name"
-                           placeholder="请输入用户名">
-                </div>
-                <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password"
-                           placeholder="请输入密码">
-                </div>
+			<div id="login" style="padding:30px 0;">
+                Set Album to <span style="color: #ff5656">Group Name</span>
+                <br />
+                <form role="form" action="setAlbum" enctype="multipart/form-data" method="post" style="margin-top: 5px;">
+                    <div class="form-group">
+                        <label for="name">Album Title</label>
+                        <input type="text" class="form-control" id="name"
+                               placeholder="Please input the album title...">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Album Description</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="input-file">Upload album cover...<input type="file" id="inputfile"></a>
+                    </div>
+                    <button type="submit" class="btn-sub">Set it!</button>
+                    <br />
+                </form>
 
-                <input class="inputbtn" type="submit" name="rigister" value="登录">
-
-
-                <!--<button type="submit" class="btnsub">登录</button>-->
-            </form>
+			</div>
 			
 				<!---/start-text-slider-->
 				<div class="testimonials">

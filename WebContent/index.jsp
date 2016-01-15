@@ -4,33 +4,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Home</title>
+<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
 <!-- Custom Theme files -->
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/modernizr.custom.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords"
-	content="Metushi Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="design" />
 <script type="application/x-javascript">
-	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
 </script>
 
 <!--webfont-->
-<link
-	href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -54,6 +48,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(this).find(".text").stop().hide();
 		});
 	});
+	//    $(".like").hide();
+
+	//    $(function likeit(){
+	//        for(var i=1;i<=16;i++){
+	//            if(document.getElementById("u"+i).onclick==true){
+	//                document.getElementById("u"+i).hide();
+	//                document.getElementById("l"+i).show();
+	//            }
+	//        }
+	//    });
+	//
+	//    $(function unlikeit(){
+	//        for(var i=1;i<=16;i++){
+	//            if(document.getElementById("l"+i).onclick==true){
+	//                document.getElementById("l"+i).hide();
+	//                document.getElementById("u"+i).show();
+	//            }
+	//        }
+	//    });
 </script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
@@ -65,37 +78,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 
-	function change(n) {
-		if (n % 2 == 1) {
-			document.getElementById('l' + (n + 1)).style.display = "inline";
-			document.getElementById('l' + n).style.display = "none";
-			$.post("Like", {
-				like : "1"
-			});
-		}
-		if (n % 2 == 0) {
-			document.getElementById('l' + n).style.display = "none";
-			document.getElementById('l' + (n - 1)).style.display = "inline";
-			$.post("Like", {
-				like : "2"
-			});
-		}
-	}
+	//        function change(n){
+	//            if(n%2==1){
+	//                document.getElementById('l'+(n+1)).style.display="inline";
+	//                document.getElementById('l'+n).style.display="none";
+	//
+	//            }
+	//            if(n%2==0){
+	//                document.getElementById('l'+n).style.display="none";
+	//                document.getElementById('l'+(n-1)).style.display="inline";
+	//            }
+	//        }
 
-	function change1(n, pi) {
+	function change(n, id) {
 		if (n % 2 == 1) {
 			document.getElementById('l' + (n + 1)).style.display = "inline";
 			document.getElementById('l' + n).style.display = "none";
-			$.post("Like", {
-				like : "1##pic##" + pi
-			});
+
 		}
 		if (n % 2 == 0) {
 			document.getElementById('l' + n).style.display = "none";
 			document.getElementById('l' + (n - 1)).style.display = "inline";
-			$.post("Like", {
-				like : "2##pic##" + pi
-			});
 		}
 	}
 </script>
@@ -112,13 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!-- header-section-starts -->
-	<div class="header" id="header">
-		<jsp:include page="UserInfoBar.jsp" />
-	</div>
-	<div class="header-bottom">
-		<div class="container"></div>
-	</div>
-
+	<jsp:include page="header_normal_block.jsp" />
 	<div class="slideing">
 		<div class="head-bg">
 			<!-- container -->
@@ -128,13 +125,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!--</div>-->
 				<div class="top-nav">
 					<ul class="cl-effect-1">
-						<li><a href="about.jsp">About Us</a></li>
 						<!--<li><a href="contact.jsp">Contact</a></li>-->
-						<li><a href="album.jsp">Album</a></li>
+						<li><a href="about.jsp">About us</a></li>
+						<li><a href="search.jsp">Search</a></li>
 						<li><a href="group.jsp">Group</a></li>
-						<li><a href="portfolio.jsp">Portfolio</a></li>
-						<li><a href="blog.jsp">Personal</a></li>
-						<li><a href="pic.jsp">Sharing</a></li>
+						<li><a href="album.jsp">Album</a></li>
+						<li><a href="pic.jsp">Picture</a></li>
 
 						<!--<div class="clearfix"></div>-->
 					</ul>
@@ -178,6 +174,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							});
 
 				});
+
+				//                function change(n){
+				//                    if(n==1){
+				//                        document.getElementById('l2').show();
+				//                        document.getElementById('l1').hidden();
+				//                    }
+				//                    if(n==2){
+				//                        document.getElementById('l1').show();
+				//                        document.getElementById('l2').hidden();
+				//                    }
+				//                }
 			</script>
 			<!--//End-slider-script -->
 			<div id="top" class="callbacks_container">
@@ -220,19 +227,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					Hot Sharing<span class="line"></span>
 				</h4>
 				<div class="latest-projects">
-
-					<jsp:include page="HotShare.jsp" flush="true"><jsp:param
+					<jsp:include page="hot_picture_recommendation_block.jsp" flush="true"><jsp:param
 							name="page" value="0" /><jsp:param
 							name="index" value="0" /></jsp:include>
-					<jsp:include page="HotShare.jsp" flush="true"><jsp:param
+					<jsp:include page="hot_picture_recommendation_block.jsp" flush="true"><jsp:param
 							name="page" value="1" /><jsp:param
 							name="index" value="1" /></jsp:include>
-
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<jsp:include page="copyright.jsp" />
+	<div class="footer">
+		<div class="footer-top">
+			<div class="container">
+				<div class="col-md-4 footer-grid">
+					<h5>ABOUT US</h5>
+					<p>Group from School of Software Engineering in Tongji
+						University</p>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<h5>FEED</h5>
+					<p>Please send email to charlottie77@163.com</p>
+					<span>1 day ago</span>
+					<p>
+						<a href="#">@envanto</a>, Motive wordpress theme full responsive
+						is coming soon...
+					</p>
+					<span>4 day ago</span>
+				</div>
+				<div class="col-md-4 footer-grid">
+					<h5>FOLLOW US</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Nulla in purus nibh. Donec ornare felis neque. Nullam tortor!</p>
+
+
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="copyrights">
+					<p>Copyright &copy; 2015.Imangine All rights reserved.</p>
+				</div>
+				<div class="go-top">
+					<a href="#header" class="scroll"><img
+						src="images/go-to-top.png" alt="" /></a>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

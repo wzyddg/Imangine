@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>setAlbum</title>
-<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
+<title>Modify Group</title>
+    <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -43,6 +43,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 <body>
+	<!-- header-section-starts -->
+
 	<div class="navigation-strip">
         <div class="container">
             <div class="nav_content">
@@ -87,22 +89,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="content">
 		<div class="container">
-			<div id="login" style="margin-bottom: 30px;>
-                <form role="form" action="setAlbum" enctype="multipart/form-data" method="post">
+			<div id="login" style="margin-bottom: 30px;">
+                <form role="form" action="setGroup" enctype="multipart/form-data" method="post">
                     <div class="form-group">
-                        <label for="name">Album Title</label>
+                        <label for="name">Group Name</label>
                         <input type="text" class="form-control" id="name"
-                               placeholder="Please input the album title...">
+                               placeholder="Please input group name">
                     </div>
                     <div class="form-group">
-                        <label for="name">Album Description</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <label for="name">Group Theme</label>
+                        <input type="text" class="form-control" id="theme"
+                               placeholder="Please">
                     </div>
                     <div class="form-group">
-                        <a href="#" class="input-file">Upload album cover...<input type="file" id="inputfile"></a>
+                        <a href="#" class="input-file">Upload Group cover...<input type="file" id="inputfile"></a>
                     </div>
                     <button type="submit" class="btn-sub">Set it!</button>
-                    <br />
                 </form>
 
 			</div>

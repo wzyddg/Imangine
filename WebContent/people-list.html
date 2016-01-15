@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Personal Center</title>
+    <title>People List</title>
     <link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
@@ -17,8 +17,6 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-    <!--webfont-->
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -41,6 +39,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $(this).find(".text").stop().hide();
                         // $(this).find(".text").animate({left:"-286px"}, {duration: 0})
                     });
+            $(".btn-sub").click(function(){
+                alert("Sure to disband your group?");
+            });
         });
     </script>
     <style>
@@ -49,10 +50,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             -webkit-text-size-adjust: 100%;
         }
 
-        body {
-            font-family: 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti;
+        body
+        {
             margin: 0;
         }
+
         .main-nav-a a:hover{
             color:#ff5656;
         }
@@ -60,6 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         .main-nav-a a:focus{
             color:#ff8e92;
         }
+
         a span
         {
             font-size: 20px;
@@ -90,18 +93,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
 
-
-
-        .collapse.glyphicon-chevron-toggle, .glyphicon-chevron-toggle:before {
-            content: "\e113";
-        }
-
-        .collapsed.glyphicon-chevron-toggle:before {
-            content: "\e114";
-        }
-        .UserInfo{
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -128,12 +119,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <span class="menu"></span>
             <div class="top-menu">
                 <ul>
-                    <li><a class="active" href="pic.html">Picture</a></li>
+                    <li><a href="pic.html">Picture</a></li>
                     <li><a href="album.html">Album</a></li>
                     <li><a href="group.html">Group</a></li>
                     <li><a href="search.html">Search</a></li>
                     <li><a href="about.html">About us</a></li>
-                    <div class="clearfix"></div>
+
                 </ul>
             </div>
             <!-- script for menu -->
@@ -154,101 +145,83 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
-                    <ul id="main-nav" class="main-nav nav nav-tabs nav-stacked" style="">
-                        <li class="main-nav-a">
-                            <a href="personal.html">
-                                <i class="glyphicon glyphicon-th-large"></i>
-                                <span>Personal Information</span>
-                            </a>
-                        </li>
-                        <li class="main-nav-a">
-                            <a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
-                                <i class="glyphicon glyphicon-cog"></i>
-                                <span>Modify Information</span>
-                                <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>
-                            </a>
-                            <ul id="systemSetting" class="nav nav-list secondmenu collapse" style="height: 0px;">
-                                <li><a href="personal-modify.html"><i class="glyphicon glyphicon-user"></i>&nbsp;<span>Modify Basic Info</span> </a></li>
-                                <!--<li><a href="#"><i class="glyphicon glyphicon-th-list"></i>&nbsp;--</a></li>-->
-                                <!--<li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>&nbsp;--</a></li>-->
-                                <!--<li><a href="#"><i class="glyphicon glyphicon-edit"></i>&nbsp;--</a></li>-->
-                                <!--<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;--</a></li>-->
-                            </ul>
-                        </li>
-                        <li class="main-nav-a">
-                            <a href="#disSetting" class="nav-header collapsed" data-toggle="collapse">
-                                <i class="glyphicon glyphicon-globe"></i>
-                                <span>Firends Circle</span>
-                                <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>
-                            </a>
-                            <ul id="disSetting" class="nav nav-list secondmenu collapse">
-                                <li><a href="watchlist.html"><i class="glyphicon glyphicon-th-list"></i>&nbsp;<span>My Watchlist</span></a></li>
-                            </ul>
-
-                        </li>
-
-                        <!--<li class="main-nav-a">-->
-                        <!--<a href="#dicSetting" class="nav-header collapsed" data-toggle="collapse">-->
-                        <!--<i class="glyphicon glyphicon-bold"></i>-->
-                        <!--字典配置-->
-                        <!--<span class="pull-right glyphicon glyphicon-chevron-toggle"></span>-->
-                        <!--</a>-->
-                        <!--<ul id="dicSetting" class="nav nav-list secondmenu collapse">-->
-                        <!--<li><a href="#"><i class="glyphicon glyphicon-text-width"></i>&nbsp;关键字配置</a></li>-->
-                        <!--</ul>-->
-                        <!--</li>-->
-                        <li class="main-nav-a">
-                            <a href="news.html">
-                                <i class="glyphicon glyphicon-fire"></i>
-                                <span>News</span>
-                                <span class="badge pull-right">1</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="col-md-11" id="userinfo">
+                       <a href="single-group.html"><img id="albumprof" src="images/a1.jpg" /></a>
+                        <br />
+                        <br />
+                        <h3>Stuff Name</h3>
+                        <p>Stuff Description</p>
+                        <br />
+                    </div>
                 </div>
-                <div class="col-md-9 filler">
-                    <form role="form" action="UserReg" enctype="multipart/form-data" method="post">
-                        <div class="position"></div>
-                        <div class="form-group">
-                            <label for="inputfile">Modify Avatar</label>
-                            <br />
-                            <a href="#" class="input-file">Browse...<input type="file" id="inputfile"></a>
-                            <!--<p class="help-block">这里是块级帮助文本的实例。</p>-->
+                <div class="col-md-9 watchlist">
+                    <div class="watchlista">Total &nbsp; <span>5</span> &nbsp; people
+            </div>
+                    <div class="watch-list">
+                        <div class="row">
+                            <span class="line2"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Modify Nickname</label>
-                            <input type="text" class="form-control" id="name"
-                                   placeholder="Please input your new nickname">
+                        <div class="row coverpageSelectMe">
+                            <div class="coverpage"></div>
+                            <div class="userl">
+                                <div class="col-md-2 watchp"> <img src="images/user-p.png"></div>
+                                <div class="col-md-4 watchl">
+                                    <label>Mint</label>
+                                    <p>Please dont starve together</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Modify Password</label>
-                            <input type="password" class="form-control" id="password"
-                                   placeholder="Please input your password">
+                        <div class="row coverpageSelectMe">
+                            <div class="coverpage"></div>
+                            <div class="userl">
+                                <div class="col-md-2 watchp"> <img src="images/user-p.png"></div>
+                                <div class="col-md-4 watchl">
+                                    <label>Mint</label>
+                                    <p>Please dont starve together</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">New Password</label>
-                            <input type="password" class="form-control" id="password"
-                                   placeholder="Input new password">
+                        <div class="row coverpageSelectMe">
+                            <div class="coverpage"></div>
+                            <div class="userl">
+                                <div class="col-md-2 watchp"> <img src="images/user-p.png"></div>
+                                <div class="col-md-4 watchl">
+                                    <label>Mint</label>
+                                    <p>Please dont starve together</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Confirm Password</label>
-                            <input type="password" class="form-control" id="password"
-                                   placeholder="Confirm new password">
+                        <div class="row coverpageSelectMe">
+                            <div class="coverpage"></div>
+                            <div class="userl">
+                                <div class="col-md-2 watchp"> <img src="images/user-p.png"></div>
+                                <div class="col-md-4 watchl">
+                                    <label>Mint</label>
+                                    <p>Please dont starve together</p>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btnsub">Submit</button>
-                        <div class="position"></div>
-                    </form>
+                        <div class="row coverpageSelectMe">
+                            <div class="coverpage"></div>
+                            <div class="userl">
+                                <div class="col-md-2 watchp"> <img src="images/user-p.png"></div>
+                                <div class="col-md-4 watchl">
+                                    <label>Mint</label>
+                                    <p>Please dont starve together</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-
-
-
-        </div>
-
-        <!---/start-text-slider-->
-
     </div>
+</div>
 
 <div class="footer">
     <div class="footer-top">

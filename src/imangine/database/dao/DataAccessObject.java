@@ -74,9 +74,9 @@ public class DataAccessObject {
 		// Album albums = getAlbumWithAlbumId(4);
 		// System.out.println(albums.getPicNum() + " "
 		// + albums.getUser().getUserName());
-
-		setPictureCommentWithPicIdNUserIdNContent(36, 16, "MW 2016.1.5 1102");
-		System.out.println("over1");
+//
+//		setPictureCommentWithPicIdNUserIdNContent(36, 16, "MW 2016.1.5 1102");
+//		System.out.println("over1");
 		// setPictureCommentWithPicIdNUserIdNContent(36, 16, "MW 2016.1.5 10:32");
 		// System.out.println("over");
 		// quitGroupWithUserIdNGroupId(13, 4);
@@ -85,6 +85,9 @@ public class DataAccessObject {
 		// "dds333d", "44444", 15);
 		// System.out.println(getPicIdsWithLikedUserIdNIndex(14, 1).size());
 		// System.out.println(getPicIdsWithLikedUserIdNIndex(14, 2).size());
+		setPicLikeWithPicIdNUserId(25, 14);
+		removePicLikeWithPicIdNUserId(25,14);
+		
 	}
 
 	/**
@@ -272,12 +275,12 @@ public class DataAccessObject {
 	/**
 	 * @pic
 	 */
-	public static Picture getPicWithPicId(Integer picId) {
+	public static Picture getPicWithPicId(Integer pictureId) {
 
 		Session session = sessionStart();
-		String hql = "from Picture where picId =?";
+		String hql = "from Picture where pictureId =?";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		List<Picture> picture = query.list();
 		// System.out.println(picture.get(0).getPath());
 		return (picture.size() == 0 ? null : picture.get(0));
@@ -364,11 +367,11 @@ public class DataAccessObject {
 		return picture.getPictureId();
 	}
 
-	public static List<PictureTag> getPictureTagsWithPicId(Integer picId) {
+	public static List<PictureTag> getPictureTagsWithPicId(Integer pictureId) {
 		Session session = sessionStart();
 		String hql = "from PictureTag where picture = ?";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		List<PictureTag> pictureTag = query.list();
 		// for(PictureTag ptPictureTag :pictureTag){
 		// System.out.println(ptPictureTag.getId().getTag());
@@ -381,23 +384,26 @@ public class DataAccessObject {
 	 * @piclike
 	 */
 
-	public static Boolean removePicLikeWithPicIdNUserId(Integer picId,
+	public static Boolean removePicLikeWithPicIdNUserId(Integer pictureId,
 			Integer userId) {
 
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
-		String hql = "from PictureLiked where id.picId=? and id.userId=?";
+		String hql = "from PictureLiked where id.pictureId=? and id.userId=?";
 		Query query = ((SharedSessionContract) session).createQuery(hql); // �ҵ���Ҫɾ������
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		query.setInteger(1, userId);
 		List<PictureLiked> PictureLiked = query.list();
+		for(int i = 0;i<PictureLiked.size();i++){
+			System.out.println(PictureLiked.get(i).getUser().getUserId()+"kk"+PictureLiked.get(i).getPicture().getPictureId());
+		}
 		// System.out.println(GroupMemberWant.get(0).getId().getUserId());
 
 		try {
 			session.delete(PictureLiked.get(0));
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("ȡ�ش���");
+			System.out.println("remove picture Like Fail!");
 			return false;
 		}
 
@@ -429,34 +435,34 @@ public class DataAccessObject {
 		return true;
 	}
 
-	public static List<PictureLiked> getPicLikeUserIdsWithPicId(Integer picId) {
+	public static List<PictureLiked> getPicLikeUserIdsWithPicId(Integer pictureId) {
 		Session session = sessionStart();
 		String hql = "from PictureLiked where picture = ?";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		List<PictureLiked> useridList = query.list();
 
 		return useridList;
 	}
 
-	public static Boolean setPicLikeWithPicIdNUserId(Integer picId,
+	public static Boolean setPicLikeWithPicIdNUserId(Integer pictureId,
 			Integer userId) {
 
 		Session session = sessionStart();
-		String hql = "from PictureLiked where id.picId = ? and id.userId = ?"; // �����Ƿ�������Ѵ���
+		String hql = "from PictureLiked where id.pictureId = ? and id.userId = ?"; // �����Ƿ�������Ѵ���
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		query.setInteger(1, userId);
 		List<PictureLiked> useridList = query.list();
 		if (useridList.size() == 0) {
 			Transaction tx1 = session.beginTransaction();
-			PictureLikedId picLikedId = new PictureLikedId(picId, userId);
-			PictureLiked picLiked = new PictureLiked(picLikedId, getPicWithPicId(picId));
+			PictureLikedId picLikedId = new PictureLikedId(pictureId, userId);
+			PictureLiked picLiked = new PictureLiked(picLikedId, getPicWithPicId(pictureId));
 			// System.out.println(picLiked.getId().getPicId()+"dsasadas");
 			session.save(picLiked);
 			tx1.commit();
 		} else
-			System.out.println("�ѵ����");
+			System.out.println("already like!");
 		return true;
 	}
 
@@ -464,12 +470,12 @@ public class DataAccessObject {
 	 * @piccomment
 	 */
 
-	public static List<PictureComment> getPictureCommentsWithPicId(Integer picId) {
+	public static List<PictureComment> getPictureCommentsWithPicId(Integer pictureId) {
 
 		Session session = sessionStart();
 		String hql = "from PictureComment where picture= ? ";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		List<PictureComment> comments = query.list();
 		// for(PictureComment pictureComment :comments)
 		// System.out.println(pictureComment.getContent());
@@ -477,13 +483,13 @@ public class DataAccessObject {
 
 	}
 
-	public static boolean setPictureCommentWithPicIdNUserIdNContent(Integer picId,
+	public static boolean setPictureCommentWithPicIdNUserIdNContent(Integer pictureId,
 			Integer userId, String content) {
 		Date commentDate = new Date();
 		// System.out.println(commentDate);
 		Session session = sessionStart();
 		Transaction tx1 = session.beginTransaction();
-		PictureComment pictureComment = new PictureComment(getPicWithPicId(picId),
+		PictureComment pictureComment = new PictureComment(getPicWithPicId(pictureId),
 				getUserWtihUserId(userId), commentDate, content);
 		try {
 			session.save(pictureComment);
@@ -799,12 +805,12 @@ public class DataAccessObject {
 
 	}
 
-	public static Boolean addPicToAlbumWithPicId(Integer picId, Integer albumId) {
+	public static Boolean addPicToAlbumWithPicId(Integer pictureId, Integer albumId) {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
-		AlbumIncludedId albumIncludedId = new AlbumIncludedId(albumId, picId);
+		AlbumIncludedId albumIncludedId = new AlbumIncludedId(albumId, pictureId);
 		AlbumIncluded albumIncluded = new AlbumIncluded(albumIncludedId,
-				getAlbumWithAlbumId(albumId), getPicWithPicId(picId));
+				getAlbumWithAlbumId(albumId), getPicWithPicId(pictureId));
 		try {
 			session.save(albumIncluded);
 		} catch (Exception e) {
@@ -862,20 +868,20 @@ public class DataAccessObject {
 		return true;
 	}
 
-	// public static Boolean setPicLikeWithPicIdNUserId(Integer picId,Integer
+	// public static Boolean setPicLikeWithPicIdNUserId(Integer pictureId,Integer
 	// userId) {
 	//
 	// Session session=sessionStart();
-	// String hql = "from PictureLiked where id.picId = ? and id.userId = ?";
+	// String hql = "from PictureLiked where id.pictureId = ? and id.userId = ?";
 	// //�����Ƿ�������Ѵ���
 	// Query query = ((SharedSessionContract) session).createQuery(hql);
-	// query.setInteger(0, picId);
+	// query.setInteger(0, pictureId);
 	// query.setInteger(1, userId);
 	// List<PictureLiked> useridList = query.list();
 	// if(useridList.size() == 0){
 	// Transaction tx1 = session.beginTransaction();
-	// PictureLikedId picLikedId = new PictureLikedId(picId, userId);
-	// PictureLiked picLiked = new PictureLiked(picLikedId, getPicWithPicId(picId));
+	// PictureLikedId picLikedId = new PictureLikedId(pictureId, userId);
+	// PictureLiked picLiked = new PictureLiked(picLikedId, getPicWithPicId(pictureId));
 	// // System.out.println(picLiked.getId().getPicId()+"dsasadas");
 	// session.save(picLiked);
 	// tx1.commit();
@@ -887,11 +893,11 @@ public class DataAccessObject {
 	/**
 	 * @new interfaces
 	 */
-	public static List<AlbumIncluded> getAlbumWithPicId(Integer picId) {
+	public static List<AlbumIncluded> getAlbumsWithPicId(Integer pictureId) {
 		Session session = sessionStart();
-		String hql = "from AlbumIncluded where id.picId= ? ";
+		String hql = "from AlbumIncluded where id.pictureId= ? ";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
-		query.setInteger(0, picId);
+		query.setInteger(0, pictureId);
 		List<AlbumIncluded> albumIncludeds = query.list();
 		// for(AlbumLiked user: user)
 		// System.out.println(user.getId().getUserId());
@@ -1006,7 +1012,7 @@ public class DataAccessObject {
 	public static List<Picture> getHotSharePicsWithIndex(int index) {
 
 		Session session = sessionStart();
-		String sql = "select pic_id from (select pic_id as pic_id ,count(distinct user_id) as likedCount from pic_liked group by pic_id order by likedCount desc)as countlist";
+		String sql = "select picture_id from (select picture_id as picture_id ,count(distinct user_id) as likedCount from picture_liked group by picture_id order by likedCount desc)as countlist";
 		Query query = ((SharedSessionContract) session).createSQLQuery(sql);
 		List<Integer> picList = query.list(); // �õ���Ƭ���
 

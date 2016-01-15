@@ -43,6 +43,8 @@ public class Login extends HttpServlet {
 		String name=request.getParameter("name");
 		String passWord=request.getParameter("password");
 		
+		System.out.println(name+" k "+passWord);
+		
 //		System.out.println(request);
 //		System.out.println(name+passWord);
 		User result=DataAccessObject.login(name, passWord);
