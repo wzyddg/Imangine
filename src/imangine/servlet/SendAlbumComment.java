@@ -1,5 +1,6 @@
 package imangine.servlet;
 
+import imangine.database.dao.DataAccessObject;
 import imangine.database.entity.User;
 
 import java.io.IOException;
@@ -10,20 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import imangine.database.dao.DataAccessObject;
-
 /**
- * Servlet implementation class SendPicComment
+ * Servlet implementation class SendAlbumComment
  */
-@WebServlet("/SendPictureComment")
-public class SendPictureComment extends HttpServlet {
+@WebServlet("/SendAlbumComment")
+public class SendAlbumComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendPictureComment() {
+    public SendAlbumComment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,28 +39,26 @@ public class SendPictureComment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		System.out.println(request.getParameter("comCon")+request.getParameter("picId"));
-		Integer picId=0;
+		Integer albumId=0;
 		try {
-			picId=Integer.parseInt(request.getParameter("picId"));
+			albumId=Integer.parseInt(request.getParameter("albumId"));
 		} catch (Exception e) {
-			request.getSession().setAttribute("PicComStatus", new Boolean(false));
-			request.getRequestDispatcher("picture_detail.jsp?id="+picId).forward(request, response);
+			request.getSession().setAttribute("AlbumComStatus", new Boolean(false));
+			request.getRequestDispatcher("album_detail.jsp?id="+albumId).forward(request, response);
 			// TODO: handle exception
 		}
 		User user=(User) request.getSession().getAttribute("userLoginStatus");
 		String comCon=request.getParameter("comCon");
 		if(user==null||comCon==null||comCon.equals("")){
-			request.getSession().setAttribute("PicComStatus", new Integer(-1));
-//			request.getRequestDispatcher("single.jsp?id="+picId).forward(request, response);\
-			response.sendRedirect("picture_detail.jsp?id="+picId);
+			request.getSession().setAttribute("AlbumComStatus", new Integer(-1));
+//			request.getRequestDispatcher("single.jsp?id="+albumId).forward(request, response);\
+			response.sendRedirect("album_detail.jsp?id="+albumId);
 		}
 		else {
-			request.getSession().setAttribute("PicComStatus", new Integer(1));
-			DataAccessObject.setPictureCommentWithPicIdNUserIdNContent(picId,user.getUserId(),comCon);
-//			request.getRequestDispatcher("single.jsp?id="+picId).forward(request, response);
-			response.sendRedirect("picture_detail.jsp?id="+picId);
+			request.getSession().setAttribute("AlbumComStatus", new Integer(1));
+			DataAccessObject.setAlbumCommentWithAlbumIdNUserIdNContent(albumId,user.getUserId(),comCon);
+//			request.getRequestDispatcher("single.jsp?id="+albumId).forward(request, response);
+			response.sendRedirect("album_detail.jsp?id="+albumId);
 		}
 	}
-
 }

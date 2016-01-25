@@ -97,7 +97,7 @@ public class ModifyPersonalInfo extends HttpServlet {
 					user.getBirthdayString());
 
 			request.getSession().setAttribute("userLoginStatus",
-					DataAccessObject.getUserWtihUserId(user.getUserId()));
+					DataAccessObject.getUserWithUserId(user.getUserId()));
 			response.sendRedirect("personal-modify.jsp?error=0");
 		}
 

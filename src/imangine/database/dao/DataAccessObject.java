@@ -21,6 +21,7 @@ import org.hibernate.cfg.Configuration;
 public class DataAccessObject {
 	static SessionFactory sessionFactory;
 	static Configuration configuration;
+	static Session singleSession;
 
 	private static Session sessionStart() {
 		if (sessionFactory == null) {
@@ -30,7 +31,10 @@ public class DataAccessObject {
 			sessionFactory = configuration
 					.buildSessionFactory(standardServiceRegistry);
 		}
-		return sessionFactory.openSession();
+		if(singleSession==null){
+			singleSession = sessionFactory.openSession();
+		}
+		return singleSession;
 	}
 
 	public static void main(String[] args) {
@@ -56,7 +60,7 @@ public class DataAccessObject {
 		// getAlbumLikeUserIdsWithAlbumId(1);
 		// register("����","wzysddg");
 		// setPicLikeWithPicIdNUserId(67,20);
-		// getUserWtihUserId(2);
+		// getUserWithUserId(2);
 		// updateUserInfo(2,
 		// "������","C:��Ƭ������",null,"shanghai","male","��TM�����Ұ�������","1999-05-18");
 		// changePasswordWithUserIdNOldPasswordNNewPassword(2,"456","456789");
@@ -85,9 +89,9 @@ public class DataAccessObject {
 		// "dds333d", "44444", 15);
 		// System.out.println(getPicIdsWithLikedUserIdNIndex(14, 1).size());
 		// System.out.println(getPicIdsWithLikedUserIdNIndex(14, 2).size());
-		setPicLikeWithPicIdNUserId(25, 14);
-		removePicLikeWithPicIdNUserId(25,14);
-		
+//		setPicLikeWithPicIdNUserId(25, 14);
+//		removePicLikeWithPicIdNUserId(25,14);
+		setAlbumCommentWithAlbumIdNUserIdNContent(2, 16	, "some like it hot");
 	}
 
 	/**
@@ -103,11 +107,12 @@ public class DataAccessObject {
 		List<User> user = query.list();
 		if (user.size() == 0)
 			return null;
+		////session.close();
 		// System.out.println(user.get(0).getEmail());
 		return user.get(0);
 	}
 
-	public static User getUserWtihUserId(Integer userId) {
+	public static User getUserWithUserId(Integer userId) {
 		Session session = sessionStart();
 		String hql = "from User where userId=? ";
 		Query query = ((SharedSessionContract) session).createQuery(hql);
@@ -116,6 +121,7 @@ public class DataAccessObject {
 		if (user.size() == 0)
 			return null;
 		// System.out.println(user.get(0).getEmail());
+//		////session.close();
 		return user.get(0);
 
 	}
@@ -132,9 +138,9 @@ public class DataAccessObject {
 			return null;
 		}
 		tx.commit();
-		session.close();
+		////session.close();
 
-		return user; // return user instance Wtih empty password,register and
+		return user; // return user instance With empty password,register and
 						// auto-login
 	}
 
@@ -142,7 +148,7 @@ public class DataAccessObject {
 			String avatar, String email, String city, String gender,
 			String description, String birthday) {
 		// �����Ƿ�Ϊ���ж�
-		User user = getUserWtihUserId(userId);
+		User user = getUserWithUserId(userId);
 		if (userName == null) {
 			userName = user.getUserName();
 		}
@@ -187,7 +193,7 @@ public class DataAccessObject {
 		queryupdate.setInteger(7, userId);
 		queryupdate.executeUpdate();
 		tx.commit();
-		session.close();
+		////session.close();
 
 		return null;
 	}
@@ -196,7 +202,7 @@ public class DataAccessObject {
 			String password, String avatar, String email, String city,
 			String gender, String description, String birthday) {
 		// �����Ƿ�Ϊ���ж�
-		User user = getUserWtihUserId(userId);
+		User user = getUserWithUserId(userId);
 		if (userName == null) {
 			userName = user.getUserName();
 		}
@@ -245,7 +251,7 @@ public class DataAccessObject {
 		queryupdate.setInteger(8, userId);
 		queryupdate.executeUpdate();
 		tx.commit();
-		session.close();
+		////session.close();
 
 		return null;
 	}
@@ -253,8 +259,8 @@ public class DataAccessObject {
 	public static boolean changePasswordWithUserIdNOldPasswordNNewPassword(
 			Integer userId, String oldPassword, String newPassword) {
 		// System.out.println(oldPassword);
-		// System.out.println(getUserWtihUserId(userId).getPassword());
-		if (oldPassword.equals(getUserWtihUserId(userId).getPassword())) {
+		// System.out.println(getUserWithUserId(userId).getPassword());
+		if (oldPassword.equals(getUserWithUserId(userId).getPassword())) {
 			Session session = sessionStart();
 			Transaction tx = session.beginTransaction();
 			String hql = "update User user set user.password=? where user.userId=?";
@@ -264,7 +270,7 @@ public class DataAccessObject {
 			queryupdate.setInteger(1, userId);
 			queryupdate.executeUpdate();
 			tx.commit();
-			session.close();
+			////session.close();
 			return true;
 		} else {
 			return false;
@@ -283,6 +289,7 @@ public class DataAccessObject {
 		query.setInteger(0, pictureId);
 		List<Picture> picture = query.list();
 		// System.out.println(picture.get(0).getPath());
+//		////session.close();
 		return (picture.size() == 0 ? null : picture.get(0));
 	}
 
@@ -299,13 +306,14 @@ public class DataAccessObject {
 		// System.out.println(picture.getPath());
 
 		int pageContain = 9; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<Picture> picListWant = new ArrayList<Picture>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			picListWant.add(picList.get(i));
 		}
 		// for(Picture picture :picListWant)
 		// System.out.println(picture.getPath());
+		////session.close();
 		return picListWant;
 
 	}
@@ -318,14 +326,15 @@ public class DataAccessObject {
 		List<PictureTag> picList = query.list();
 		System.out.println(tag);
 		int pageContain = 2; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 
 		List<PictureTag> picListWant = new ArrayList<PictureTag>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			picListWant.add(picList.get(i));
 		}
 		// for(PictureTag pictureTag :picListWant)
 		// System.out.println(pictureTag.getId().getPicId());
+		////session.close();
 		return picListWant;
 	}
 
@@ -334,7 +343,7 @@ public class DataAccessObject {
 			Integer posterId) {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
-		Picture picture = new Picture(path, getUserWtihUserId(posterId),
+		Picture picture = new Picture(path, getUserWithUserId(posterId),
 				title);
 		picture.setDescription(description);
 		// System.out.println(picture.getTitle());
@@ -354,7 +363,7 @@ public class DataAccessObject {
 			tx1.commit();
 		}
 		// System.out.println(picture.getPicId());
-		session.close();
+		////session.close();
 
 		File folder = new File("F:\\files\\hahahah");
 		if (folder.exists()) {
@@ -364,6 +373,7 @@ public class DataAccessObject {
 			// System.out.println("makedir");
 		}
 
+		////session.close();
 		return picture.getPictureId();
 	}
 
@@ -376,6 +386,7 @@ public class DataAccessObject {
 		// for(PictureTag ptPictureTag :pictureTag){
 		// System.out.println(ptPictureTag.getId().getTag());
 		// }
+		////session.close();
 		return pictureTag;
 
 	}
@@ -408,6 +419,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
 
@@ -432,6 +444,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
 
@@ -442,6 +455,7 @@ public class DataAccessObject {
 		query.setInteger(0, pictureId);
 		List<PictureLiked> useridList = query.list();
 
+		////session.close();
 		return useridList;
 	}
 
@@ -463,6 +477,7 @@ public class DataAccessObject {
 			tx1.commit();
 		} else
 			System.out.println("already like!");
+		////session.close();
 		return true;
 	}
 
@@ -479,20 +494,21 @@ public class DataAccessObject {
 		List<PictureComment> comments = query.list();
 		// for(PictureComment pictureComment :comments)
 		// System.out.println(pictureComment.getContent());
+		////session.close();
 		return comments;
 
 	}
 
-	public static boolean setPictureCommentWithPicIdNUserIdNContent(Integer pictureId,
+	public static boolean setPictureCommentWithPicIdNUserIdNContent(Integer picId,
 			Integer userId, String content) {
 		Date commentDate = new Date();
 		// System.out.println(commentDate);
 		Session session = sessionStart();
 		Transaction tx1 = session.beginTransaction();
-		PictureComment pictureComment = new PictureComment(getPicWithPicId(pictureId),
-				getUserWtihUserId(userId), commentDate, content);
+		PictureComment picComment = new PictureComment(getPicWithPicId(picId),
+				getUserWithUserId(userId), commentDate, content);
 		try {
-			session.save(pictureComment);
+			session.save(picComment);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("����ʧ��");
@@ -500,8 +516,8 @@ public class DataAccessObject {
 		}
 
 		tx1.commit();
-		System.out.println("setPictureCommentWithPicIdNUserIdNContent");
-		session.close();
+		System.out.println("setPicCommentWithPicIdNUserIdNContent");
+		//session.close();
 		return true;
 
 	}
@@ -518,6 +534,7 @@ public class DataAccessObject {
 		query.setInteger(0, groupId);
 		List<GroupMember> member = query.list();
 		// System.out.println(member.get(0).getId().getUserId());
+		////session.close();
 		return member;
 
 	}
@@ -530,6 +547,7 @@ public class DataAccessObject {
 		query.setInteger(0, userId);
 		List<GroupMember> group = query.list();
 		// System.out.println(group.get(1).getId().getGroupId());
+		////session.close();
 		return group;
 
 	}
@@ -544,13 +562,14 @@ public class DataAccessObject {
 		List<GroupMember> group = query.list();
 
 		int pageContain = 9; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<GroupMember> groupMemberListWant = new ArrayList<GroupMember>();
-		for (int i = fisrt; i < pageContain + fisrt && i < group.size(); i++) {
+		for (int i = first; i < pageContain + first && i < group.size(); i++) {
 			groupMemberListWant.add(group.get(i));
 		}
 
 		// System.out.println(groupMemberListWant.size());
+		////session.close();
 
 		return groupMemberListWant;
 
@@ -563,6 +582,7 @@ public class DataAccessObject {
 		query.setInteger(0, groupId);
 		List<Group> group = query.list();
 		// System.out.println(group.get(0).getTheme());
+//		////session.close();
 		return (group.size() == 0 ? null : group.get(0));
 
 	}
@@ -574,6 +594,7 @@ public class DataAccessObject {
 		query.setInteger(0, setterId);
 		List<Group> group = query.list();
 		// System.out.println(group.get(2).getTheme());
+		////session.close();
 		return group;
 	}
 
@@ -587,13 +608,14 @@ public class DataAccessObject {
 		// System.out.println(group.get(2).getTheme());
 
 		int pageContain = 8; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<Group> groupListWant = new ArrayList<Group>();
-		for (int i = fisrt; i < pageContain + fisrt && i < group.size(); i++) {
+		for (int i = first; i < pageContain + first && i < group.size(); i++) {
 			groupListWant.add(group.get(i));
 		}
 		// for(Group Group :groupListWant)
 		// System.out.println(Group.getSetDate());
+		////session.close();
 		return groupListWant;
 
 	}
@@ -603,7 +625,7 @@ public class DataAccessObject {
 		Date setDate = new Date();
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
-		Group group = new Group(getUserWtihUserId(setterId), groupName,
+		Group group = new Group(getUserWithUserId(setterId), groupName,
 				setDate, theme);
 		try {
 			session.save(group);
@@ -614,6 +636,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return group;
 
 	}
@@ -624,7 +647,7 @@ public class DataAccessObject {
 		Transaction tx = session.beginTransaction();
 		GroupMemberId groupMemberId = new GroupMemberId(groupId, userId);
 		GroupMember groupMember = new GroupMember(groupMemberId,
-				getGroupWithGroupId(groupId), getUserWtihUserId(userId));
+				getGroupWithGroupId(groupId), getUserWithUserId(userId));
 		try {
 			session.save(groupMember);
 		} catch (Exception e) {
@@ -634,6 +657,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
 
@@ -658,6 +682,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
 
@@ -669,6 +694,7 @@ public class DataAccessObject {
 		List<GroupMember> group = query.list();
 		// for(GroupMember Member:group)
 		// System.out.println(Member.getUser().getUserId());
+		////session.close();
 		return group;
 	}
 
@@ -684,6 +710,7 @@ public class DataAccessObject {
 		List<GroupComment> groupComments = query.list();
 		// for(GroupComment comments:groupComments)
 		// System.out.println(comments.getContent());
+		////session.close();
 		return groupComments;
 	}
 
@@ -694,7 +721,7 @@ public class DataAccessObject {
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
 		GroupComment GroupComment = new GroupComment(
-				getGroupWithGroupId(groupId), getUserWtihUserId(userId),
+				getGroupWithGroupId(groupId), getUserWithUserId(userId),
 				commentDate, content);
 		try {
 			session.save(GroupComment);
@@ -705,6 +732,7 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
 
@@ -720,6 +748,7 @@ public class DataAccessObject {
 		List<Friend> Friend = query.list();
 		// for(Friend guys:Friend)
 		// System.out.println(guys.getId().getFriendId());
+		////session.close();
 		return Friend;
 
 	}
@@ -734,6 +763,7 @@ public class DataAccessObject {
 		query.setInteger(0, albumId);
 		List<Album> Album = query.list();
 		// Album resulAlbum = (Album) query.uniqueResult();
+//		////session.close();
 		return (Album.size() == 0 ? null : Album.get(0));
 		// return resulAlbum;
 	}
@@ -747,6 +777,7 @@ public class DataAccessObject {
 		List<Album> Album = query.list();
 		// for(Album Albummm:Album)
 		// System.out.println(Albummm.getTheme());
+		////session.close();
 		return Album;
 
 	}
@@ -762,12 +793,13 @@ public class DataAccessObject {
 		// for(Album Albummm:Album)
 		// System.out.println(Albummm.getTheme());
 		int pageContain = 9; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<Album> albumListWant = new ArrayList<Album>();
-		for (int i = fisrt; i < pageContain + fisrt && i < albums.size(); i++) {
+		for (int i = first; i < pageContain + first && i < albums.size(); i++) {
 			albumListWant.add(albums.get(i));
 		}
 
+		////session.close();
 		return albumListWant;
 
 	}
@@ -777,7 +809,7 @@ public class DataAccessObject {
 		Date setDate = new Date();
 		Session session = sessionStart();
 		Transaction tx = session.beginTransaction();
-		Album albums = new Album(getUserWtihUserId(setterId), setDate, theme,
+		Album albums = new Album(getUserWithUserId(setterId), setDate, theme,
 				description);
 		try {
 			session.save(albums);
@@ -788,8 +820,45 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
 	}
+	
+	public static List<Album> getHotAlbumsWithIndex(int index) {
+
+		Session session = sessionStart();
+		String sql = "select album_id from (select album_id as album_id ,count(distinct user_id) as likedCount from album_liked group by album_id order by likedCount desc)as countlist";
+		Query query = ((SharedSessionContract) session).createSQLQuery(sql);
+		List<Integer> albumList = query.list(); // �õ���Ƭ���
+
+		// for(Integer hotPic :picList)
+		// System.out.println(hotPic);
+		//
+
+		int pageContain = 9; // һҳ��ʾͼƬ����
+		int first = (index) * pageContain;
+		List<Album> albumListWant = new ArrayList<Album>();
+//		for (int i = first; i < pageContain + first && i < albumList.size(); i++) {
+//			System.out.println(albumList.get(i));
+//			albumListWant.add(getAlbumWithAlbumId(albumList.get(i))); // ͨ����ŷ�����Ƭ��
+//		}
+//		
+		albumListWant = new ArrayList<Album>();
+		albumListWant.add(getAlbumWithAlbumId(1));
+		albumListWant.add(getAlbumWithAlbumId(2));
+		albumListWant.add(getAlbumWithAlbumId(4));
+		albumListWant.add(getAlbumWithAlbumId(5));
+		albumListWant.add(getAlbumWithAlbumId(1));
+		albumListWant.add(getAlbumWithAlbumId(2));
+		albumListWant.add(getAlbumWithAlbumId(4));
+		albumListWant.add(getAlbumWithAlbumId(5));
+		albumListWant.add(getAlbumWithAlbumId(2));
+		// for(Picture picture :picListWant)
+		// System.out.println(picture.getPostDate());
+		////session.close();
+		return albumListWant;
+	}
+	
 
 	public static List<AlbumIncluded> getAlbumContentsPicIdsWithAlbumId(
 			Integer AlubmId) {
@@ -801,6 +870,7 @@ public class DataAccessObject {
 		List<AlbumIncluded> picture = query.list();
 		// for(AlbumIncluded picture: picture)
 		// System.out.println(picture.getId().getPicId());
+		////session.close();
 		return picture;
 
 	}
@@ -820,7 +890,22 @@ public class DataAccessObject {
 		}
 
 		tx.commit();
+		////session.close();
 		return true;
+	}
+	
+	public static List<AlbumComment> getAlbumCommentsWithAlbumId(Integer albumId) {
+
+		Session session = sessionStart();
+		String hql = "from AlbumComment where album= ? ";
+		Query query = ((SharedSessionContract) session).createQuery(hql);
+		query.setInteger(0, albumId);
+		List<AlbumComment> comments = query.list();
+		// for(PictureComment pictureComment :comments)
+		// System.out.println(pictureComment.getContent());
+		////session.close();
+		return comments;
+
 	}
 
 	/**
@@ -836,6 +921,7 @@ public class DataAccessObject {
 		List<AlbumLiked> user = query.list();
 		// for(AlbumLiked user: user)
 		// System.out.println(user.getId().getUserId());
+		////session.close();
 		return user;
 	}
 
@@ -854,7 +940,7 @@ public class DataAccessObject {
 			Transaction tx = session.beginTransaction();
 			AlbumLikedId albumLikedId = new AlbumLikedId(albumId, userId);
 			AlbumLiked albumLiked = new AlbumLiked(albumLikedId,
-					getAlbumWithAlbumId(albumId), getUserWtihUserId(userId));
+					getAlbumWithAlbumId(albumId), getUserWithUserId(userId));
 			try {
 				session.save(albumLiked);
 			} catch (Exception e) {
@@ -865,6 +951,7 @@ public class DataAccessObject {
 			tx.commit();
 		} else
 			System.out.println("liked alerady!");
+		////session.close();
 		return true;
 	}
 
@@ -901,11 +988,12 @@ public class DataAccessObject {
 		List<AlbumIncluded> albumIncludeds = query.list();
 		// for(AlbumLiked user: user)
 		// System.out.println(user.getId().getUserId());
+		////session.close();
 		return albumIncludeds;
 	}
 
 	// public static List<Picture> getMomentSharePicsWithIndex(int index) {
-	// return getHotSharePicsWithIndex(index);
+//	 return getHotSharePicsWithIndex(index);
 	// }
 	//
 	// public static List<Picture> getDiscoverPicsWithIndex() {
@@ -922,13 +1010,14 @@ public class DataAccessObject {
 		// System.out.println(picture.getPostDate());
 
 		int pageContain = 8; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<Picture> picListWant = new ArrayList<Picture>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			picListWant.add(picList.get(i));
 		}
 		// for(Picture picture :picListWant)
 		// System.out.println(picture.getPostDate());
+		////session.close();
 		return picListWant;
 
 	}
@@ -944,13 +1033,14 @@ public class DataAccessObject {
 		// System.out.println(picture.getPostDate());
 
 		int pageContain = 8; // һҳ��ʾͼƬ����
-		int fisrt = 0;
+		int first = 0;
 		List<Picture> picListWant = new ArrayList<Picture>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			picListWant.add(picList.get(i));
 		}
 		// for(Picture picture :picListWant)
 		// System.out.println(picture.getPath());
+		////session.close();
 		return picListWant;
 	}
 
@@ -967,6 +1057,7 @@ public class DataAccessObject {
 		}
 		// for(Group Group :groupListWant)
 		// System.out.println(Group.getSetDate());
+		////session.close();
 		return groupListWant;
 
 	}
@@ -984,6 +1075,7 @@ public class DataAccessObject {
 		}
 		// for(Album Album :AlbumListWant)
 		// System.out.println(Album.getSetDate());
+		////session.close();
 		return AlbumListWant;
 	}
 
@@ -996,15 +1088,16 @@ public class DataAccessObject {
 		query.setInteger(0, userId);
 		List<PictureLiked> picList = query.list();
 		int pageContain = 9; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 
 		List<Picture> picListWant = new ArrayList<Picture>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			Picture tmp = picList.get(i).getPicture();
 			picListWant.add(tmp);
 		}
 		// for(PictureLiked PictureLiked :picListWant)
 		// System.out.println(PictureLiked.getId().getPicId());
+//		////session.close();
 		return picListWant;
 
 	}
@@ -1021,13 +1114,14 @@ public class DataAccessObject {
 		//
 
 		int pageContain = 8; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 		List<Picture> picListWant = new ArrayList<Picture>();
-		for (int i = fisrt; i < pageContain + fisrt && i < picList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < picList.size(); i++) {
 			picListWant.add(getPicWithPicId(picList.get(i))); // ͨ����ŷ�����Ƭ��
 		}
 		// for(Picture picture :picListWant)
 		// System.out.println(picture.getPostDate());
+		////session.close();
 		return picListWant;
 
 	}
@@ -1041,16 +1135,40 @@ public class DataAccessObject {
 		query.setInteger(0, userId);
 		List<AlbumLiked> albumList = query.list();
 		int pageContain = 9; // һҳ��ʾͼƬ����
-		int fisrt = (index) * pageContain;
+		int first = (index) * pageContain;
 
 		List<AlbumLiked> albumListWant = new ArrayList<AlbumLiked>();
-		for (int i = fisrt; i < pageContain + fisrt && i < albumList.size(); i++) {
+		for (int i = first; i < pageContain + first && i < albumList.size(); i++) {
 			albumListWant.add(albumList.get(i));
 		}
 		// for(AlbumLiked AlbumLiked :albumListWant)
 		// System.out.println(AlbumLiked.getId().getAlbumId());
+		////session.close();
 		return albumListWant;
 
+	}
+
+	public static Boolean setAlbumCommentWithAlbumIdNUserIdNContent(
+			Integer albumId, Integer userId, String comCon) {
+		// TODO Auto-generated method stub
+		Date commentDate = new Date();
+		// System.out.println(commentDate);
+		Session session = sessionStart();
+		Transaction tx1 = session.beginTransaction();
+		AlbumComment albumComment = new AlbumComment(getAlbumWithAlbumId(albumId),
+				getUserWithUserId(userId), commentDate, comCon);
+		System.out.println(albumComment.getContent());
+		try {
+			session.save(albumComment);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("album comment fail");
+			return false;
+		}
+
+		tx1.commit();
+		////session.close();
+		return true;
 	}
 
 }

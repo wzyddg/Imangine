@@ -1,9 +1,14 @@
+<%@page import="imangine.database.dao.DataAccessObject"%>
+<%@page import="imangine.database.entity.User"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="imangine.database.entity.Picture"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Discovering</title>
+<title>picSharing</title>
+<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -16,9 +21,7 @@
 	content="Metushi Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 
 <!--webfont-->
@@ -60,24 +63,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById('l' + (n - 1)).style.display = "inline";
 		}
 	}
-	
-	function change1(n, pi) {
-		if (n % 2 == 1) {
-			document.getElementById('l' + (n + 1)).style.display = "inline";
-			document.getElementById('l' + n).style.display = "none";
-			$.post("Like", {
-				like : "1##pic##" + pi
-			});
-		}
-		if (n % 2 == 0) {
-			document.getElementById('l' + n).style.display = "none";
-			document.getElementById('l' + (n - 1)).style.display = "inline";
-			$.post("Like", {
-				like : "2##pic##" + pi
-			});
-		}
-	}
-	
 </script>
 <style>
 .thumbnail {
@@ -91,43 +76,66 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </style>
 </head>
 <body>
-	<div class="header" id="header">
-		<jsp:include page="UserInfoBar.jsp" />
-	</div>
-	<div class="header-bottom">
-		<div class="container"></div>
-	</div>
-	<jsp:include page="NaviBar.jsp" />
+	<!-- header-section-starts -->
+
+	<jsp:include page="header_picture_block.jsp" />
+	<%
+		User userLoginStatus = (User) session
+			.getAttribute("userLoginStatus");
+			String pageString = request.getParameter("page");
+			int pageNum = 0;
+			if (pageString == null || pageString.equals("")) {
+		pageNum = 0;
+			} else {
+		try {
+			pageNum = Integer.parseInt(pageString);
+		} catch (Exception e) {
+			pageNum = 0;
+		}
+			}
+
+			List<Picture> pics = DataAccessObject.getHotSharePicsWithIndex(pageNum*2);
+
+			if (pics.size() == 0 && pageNum > 0) {
+		response.sendRedirect("latest_picture_recommendation.jsp?page=" + (pageNum - 1));
+			}
+	%>
+
 	<div class="content">
 		<div class="container">
 			<div class="projects-section">
 				<h4 class="head">
-					<a href="sharing-discov.jsp">Discover</a><span class="line"></span>
+					<a href="latest_picture_recommendation.jsp">Latest Pictures</a><span
+						class="line"></span>
 				</h4>
 				<div class="latest-projects">
 
-
-					<jsp:include page="DiscoverShare.jsp" flush="true"><jsp:param
-							name="index" value="0" /></jsp:include>
-					<jsp:include page="DiscoverShare.jsp" flush="true"><jsp:param
-							name="index" value="1" /></jsp:include>
-
-
+					<jsp:include page="hot_picture_recommendation_block.jsp"
+						flush="true"><jsp:param name="page"
+							value="<%=2 * pageNum%>" /><jsp:param name="index" value="0" /></jsp:include>
+					<jsp:include page="hot_picture_recommendation_block.jsp"
+						flush="true"><jsp:param name="page"
+							value="<%=2 * pageNum + 1%>" /><jsp:param name="index" value="1" /></jsp:include>
 
 					<div class="clearfix"></div>
 				</div>
-
-
-				<div class="pagination text-center">
-					<ul>
-						<li><a href="sharing-discov.jsp" class="next">Lucky</a></li>
-					</ul>
+				<div class="row">
+					<div clss="col-md-12"></div>
+					<div class="pagination text-center">
+						<ul>
+							<li><a class="prev"
+								href="hot_picture_recommendation.jsp?page=<%=(pageNum > 0 ? pageNum - 1 : 0)%>">＜Prev</a></li>
+							<li><%=pageNum + 1%></li>
+							<li><a class="next"
+								href="hot_picture_recommendation.jsp?page=<%=pageNum + 1%>">Next＞</a></li>
+						</ul>
+					</div>
 				</div>
-
-
 			</div>
+
 		</div>
 	</div>
-	<jsp:include page="copyright.jsp" />
+	<jsp:include page="footer_block.jsp" />
+
 </body>
 </html>

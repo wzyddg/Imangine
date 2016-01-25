@@ -115,7 +115,7 @@
 </head>
 <body>
 	<!-- header-section-starts -->
-	<jsp:include page="header_normal_block.jsp" />
+	<jsp:include page="index_header_block.jsp" />
 	<div class="slideing">
 		<div class="head-bg">
 			<!-- container -->
@@ -126,11 +126,12 @@
 				<div class="top-nav">
 					<ul class="cl-effect-1">
 						<!--<li><a href="contact.jsp">Contact</a></li>-->
-						<li><a href="about.jsp">About us</a></li>
+						<li><a href="about_imangine.jsp">About us</a></li>
 						<li><a href="search.jsp">Search</a></li>
-						<li><a href="group.jsp">Group</a></li>
-						<li><a href="album.jsp">Album</a></li>
-						<li><a href="pic.jsp">Picture</a></li>
+						<li><a href="group_home.jsp">Group</a></li>
+						<li><a href="album_home.jsp">Album</a></li>
+						<li><a href="picture_home.jsp">Picture</a></li>
+						<li><a href="picture_upload.jsp">Upload</a></li>
 
 						<!--<div class="clearfix"></div>-->
 					</ul>

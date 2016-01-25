@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<!-- header-section-starts -->
 
-	<jsp:include page="header_index_block.jsp" />
+	<jsp:include page="header_normal_block.jsp" />
 	<div class="content">
 		<div class="container">
 			<form role="form" action="Login" method="post"

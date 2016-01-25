@@ -7,7 +7,7 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">imangine</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/imangine</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/imangine?useUnicode=true&amp;characterEncoding=UTF-8</property>
         <property name="hibernate.connection.username">imangine</property>
         <property name="hibernate.current_session_context_class">jta</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

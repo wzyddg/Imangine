@@ -45,24 +45,6 @@
 	</div>
 </div>
 
-<div class="header" id="header" style="background: #27121c">
-	<div class="container">
-		<div class="reglogbar-user">
-			<div class="userp">
-				<a href="personal.jsp"> <span><%=userLoginStatus.getUserName()%>
-						&nbsp;</span>
-				</a> <a href="personal.jsp"> <img
-					src="<%=userLoginStatus.getAvatarPath()%>" />
-				</a>
-			</div>
-		</div>
-		<div class="logo" style="padding-top: 15px;">
-			<a href="index.jsp"><img src="images/imangine.png" alt="" /></a>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-
 <%
 	}
 %>

@@ -22,7 +22,7 @@ filterName = "/LoginStatusFilter"
 	"/personal-modify.jsp",
 	"/personal.jsp",
 	"/picUpload.jsp",
-	"/group-fav.jsp",
+	"/header_picture_block.jsp",
 	"/group-my.jsp",
 	"/PictureUpload",
 	"/Carousel.jsp"

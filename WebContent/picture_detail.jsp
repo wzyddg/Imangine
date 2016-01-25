@@ -20,15 +20,15 @@
 	prePage = prePage.split("/")[2];
 	//System.out.print(prePage);
 		Integer picId=null;
-			try{
-				picId = Integer.parseInt(picIdString);
-			}catch (Exception e){
+	try{
+		picId = Integer.parseInt(picIdString);
+	}catch (Exception e){
 %>
 <jsp:forward page='404.jsp' />
 <%
 	}
-			Picture pic = DataAccessObject.getPicWithPicId(picId);
-			if(pic==null){
+	Picture pic = DataAccessObject.getPicWithPicId(picId);
+	if(pic==null){
 %><jsp:forward page='404.jsp' />
 <%
 	}
@@ -48,7 +48,7 @@
 	content="Metushi Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!--webfont-->
 <link
@@ -132,10 +132,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%
 						List<PictureComment> picComments = DataAccessObject
 								.getPictureCommentsWithPicId(picId);
-						List<PictureTag> picTags = DataAccessObject.getPictureTagsWithPicId(picId);
+						List<PictureTag> picTags = DataAccessObject
+								.getPictureTagsWithPicId(picId);
 						List<PictureLiked> picLikeds = DataAccessObject
 								.getPicLikeUserIdsWithPicId(picId);
-						List<AlbumIncluded> picAlbum = DataAccessObject.getAlbumsWithPicId(picId);
+						List<AlbumIncluded> picAlbum = DataAccessObject
+								.getAlbumsWithPicId(picId);
 					%>
 
 					<div class="grid-single">
@@ -143,10 +145,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span><i> </i><%=pic.getUploadDate().toString()%>
 						</div>
 						<div class="single-one">
-							<span><a href="#"><i class="com"> </i>3</a></span>
+							<span><a href="#"><i class="com"> </i><%=picComments.size()%></a></span>
 						</div>
 						<div class="single-one">
-							<span><i class="four"> </i>400</span>
+							<span><i class="four"> </i><%=picLikeds.size()%></span>
 						</div>
 						<div class="single-one" id="sharing">
 							<span><i class="fen"> </i>Sharing</span>
@@ -158,95 +160,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="single-middle">
 						<div class="postor-info">
 							<div class=" col-md-2 postor-port">
-								<a href="blog.jsp"><img src="images/Spong-portrait.jpg"
-									alt="" /> </a>
+								<a href="personal.jsp?id=<%=pic.getUser().getUserId() %>"><img
+									src='<%=pic.getUser().getAvatarPath()%>' alt="" /> </a>
 							</div>
 							<div class="col-md-5 postor-info-i">
-								<span>Spongebob</span>
+								<span><%=pic.getUser().getUserName()%></span>
 							</div>
-							<div class="col-md-5 postor-info-i">SPONGEBOB SQUAREPANTS!
-								Absorbant and yellow and poreous is me!</div>
+							<div class="col-md-5 postor-info-i"><%=pic.getUser().getDescription()%></div>
 						</div>
 
 
 						<div class="who-liked">
-							<img src="images/fullheart.png" alt="" /> <img
-								src="images/port1.jpg" alt="" /> <img src="images/port2.jpg"
-								alt="" /> <img src="images/port3.jpg" alt="" /> <img
-								src="images/port4.jpg" alt="" /> <img src="images/port5.jpg"
-								alt="" /> <img src="images/port6.jpg" alt="" /> <a href=""><label>View
-									All</label></a>
+							<img src="images/fullheart.png" alt="" />
+							<%
+								for (int i = 0; i < picLikeds.size(); i++) {
+							%>
+
+							<img src='<%=picLikeds.get(i).getUser().getAvatarPath()%>' alt="" />
+
+							<%
+								}
+							%>
+							<a href=""><label>View All</label></a>
 						</div>
 						<div class="collected-album ">
-							<img src="images/album.png" alt="" /> <img
-								src="images/cover1.jpg" alt="" /> <img src="images/cover2.jpg"
-								alt="" /> <img src="images/cover3.jpg" alt="" /> <img
-								src="images/cover4.jpg" alt="" /> <img src="images/cover5.jpg"
-								alt="" /> <a href=""><label>View All</label></a>
+							<img src="images/album.png" alt="" />
+							<%
+								for (int i = 0; i < picAlbum.size(); i++) {
+									//album需要添加封面，替换下面
+							%>
+							<img src='<%=picAlbum.get(i).getAlbum().getCoverPath()%>' alt="" />
+							<%
+								}
+							%>
+							<a href=""><label>View All</label></a>
 						</div>
 						<div class="clearfix"></div>
 						<div class="pic-tags">
-							<a>Animation</a><span> </span> <a>Illustrator</a><span> </span> <a>youth</a><span>
-							</span> <a>color</a><span> </span>
+							<%
+								for (int i = 0; i < picTags.size(); i++) {
+							%>
+
+							<a><%=picTags.get(i).getId().getTag()%></a><span> </span>
+
+							<%
+								}
+							%>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="top-comments">
 						<h3>Comments</h3>
+						<%
+							for (int i = 0; i < picComments.size(); i++) {
+								PictureComment picComment = picComments.get(i);
+						%>
 						<div class="met">
 							<div class="code-in">
 								<p class="smith">
-									<a href="#">Robert Smith</a> <span>02 June 2014, 15:20</span>
+									<a href="#"><%=picComment.getUser().getUserName()%></a> <span><%=picComment.getCommentDate().toString()%></span>
 								</p>
 								<div class="clearfix"></div>
 							</div>
 							<div class="comments-top-top">
 								<div class="men">
-									<img src="images/port1.jpg" alt="">
+									<img src='<%=picComment.getUser().getAvatarPath()%>' alt="">
 								</div>
-								<p class="men-it">It is a long established fact that a
-									reader will be distracted by the readable content of a page
-									when looking at its layout.The point of using Lorem Ipsum is
-									that it has a more-or-less</p>
+								<p class="men-it"><%=picComment.getContent()%></p>
 								<div class="clearfix"></div>
 							</div>
 						</div>
-						<div class="met">
-							<div class="code-in">
-								<p class="smith">
-									<a href="#">Jessica Alba</a> <span>02 June 2014, 15:20</span>
-								</p>
-								<div class="clearfix"></div>
-							</div>
-							<div class="comments-top-top">
-								<div class="men">
-									<img src="images/port3.jpg" alt="">
-								</div>
-								<p class="men-it">"We're such a young company, and we’re
-									just getting started," Alba told The Huffington Post in a phone
-									interview. "We’ve laid a strong foundation, but this is just
-									the beginning."</p>
-								<div class="clearfix"></div>
-							</div>
-						</div>
+						<%
+							}
+						%>
 					</div>
 					<div class="leave">
 						<h3>Leave a comment</h3>
-						<form>
+						<%
+							session.setAttribute("prePage", prePage + "?id=" + picId);
+							if (session.getAttribute("PicComStatus") == null)
+								;
+							else if (((Integer) session.getAttribute("PicComStatus"))
+									.equals(new Integer(0))) {
+								//				System.out.println(session.getAttribute("PicComStatus") + "这个要什么都不显示的");
+							} else if ((Integer) session.getAttribute("PicComStatus") == 1) {
+								//			System.out.println(session.getAttribute("PicComStatus") + "这个要显示成功的");
+						%>
+						<font color="#00FF00">评论成功！</font>
+						<%
+							} else {
+								System.out.println(session.getAttribute("PicComStatus")
+										+ "这个要显示失败的");
+						%><font color="#FF0000">评论不能为空！</font>
+						<%
+							}
+							session.setAttribute("PicComStatus", 0);
+						%>
+						<form action="SendPictureComment?picId=<%=pic.getPictureId() %>" method="post">
 							<div class="col-md-1">
 								<div class="leave-info">
 									<div class="leave-port">
-										<img src="images/Spong-portrait.jpg" alt="">
+										<img src='<%=user.getAvatarPath()%>' alt="">
 									</div>
 									<div>
-										<span>Spongbob</span>
+										<span><%=user.getUserName() %></span>
 									</div>
 								</div>
 							</div>
 							<div class="text-top">
 								<div class="col-md-8 text-in">
-									<textarea value=" " onfocus="this.value='';"
-										onblur="if (this.value == '') {this.value = 'Comment';}">Comment</textarea>
+									<textarea name="comCon" placeholder="Comment"></textarea>
 								</div>
 								<div class="col-md-3 text-in">
 									<input type="submit" value="SEND">
@@ -260,57 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div class="footer">
-		<div class="footer-top">
-			<div class="container">
-				<div class="col-md-4 footer-grid">
-					<h5>ABOUT US</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nulla in purus nibh. Donec ornare felis neque. Nullam tortor
-						nulla, sodales quis posuere quis, tristique nec libero. Proin
-						vitae convallis odio. Morbi nec enim nisi. Aliquam erat volutpat.
-					</p>
-				</div>
-				<div class="col-md-4 footer-grid">
-					<h5>TWITTER FEED</h5>
-					<p>
-						Check out th best Themes online in the world <br>at <a
-							href="mail-to:example.com">http://example.com </a>
-					</p>
-					<span>1 day ago</span>
-					<p>
-						<a href="#">@envanto</a>, Motive wordpress theme full responsive
-						is coming soon...
-					</p>
-					<span>4 day ago</span>
-				</div>
-				<div class="col-md-4 footer-grid">
-					<h5>FOLLOW US</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nulla in purus nibh. Donec ornare felis neque. Nullam tortor!</p>
-
-					<div class="social-icons">
-						<a href="#"><i class="twitter"></i></a> <a href="#"><i
-							class="facebook"></i></a> <a href="#"><i class="dribble"></i></a> <a
-							href="#"><i class="rss"></i></a>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="copyrights">
-					<p>Copyright &copy; 2015.Imangine All rights reserved.</p>
-				</div>
-				<div class="go-top">
-					<a href="#header" class="scroll"><img
-						src="images/go-to-top.png" alt="" /></a>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="footer_block.jsp" />
 	<!-- Modal -->
 	<div class="modal fade" id="sharingModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">

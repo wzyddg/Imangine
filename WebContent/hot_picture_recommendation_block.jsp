@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!-- 一个share是两行 -->
+<!-- 一个block是两行 -->
 
 <div class="row">
 	<%
