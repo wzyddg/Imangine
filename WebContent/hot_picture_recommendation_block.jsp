@@ -27,7 +27,7 @@
 		}
 
 		List<Picture> pics = DataAccessObject
-				.getHotSharePicsWithIndex(pageInt);
+				.getHotSharePicturesWithIndex(pageInt);
 
 		for (int i = 0; i < pics.size(); i++) {
 			Picture tmp = pics.get(i);

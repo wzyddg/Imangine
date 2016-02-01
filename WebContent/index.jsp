@@ -131,7 +131,6 @@
 						<li><a href="group_home.jsp">Group</a></li>
 						<li><a href="album_home.jsp">Album</a></li>
 						<li><a href="picture_home.jsp">Picture</a></li>
-						<li><a href="picture_upload.jsp">Upload</a></li>
 
 						<!--<div class="clearfix"></div>-->
 					</ul>

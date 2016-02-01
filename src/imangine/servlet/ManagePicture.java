@@ -1,6 +1,7 @@
 package imangine.servlet;
 
 import imangine.database.dao.DataAccessObject;
+import imangine.database.entity.Picture;
 import imangine.database.entity.User;
 
 import java.io.File;
@@ -64,21 +65,21 @@ public class ManagePicture extends HttpServlet {
 		}
 		else{
 //			System.out.println("ÕâÊÇÍ·"+part.getHeader("content-disposition"));
-			File folder = new File("F:\\files\\"+user.getUserId());
+			File folder = new File(DataAccessObject.getFilesDirectory() + "\\"+user.getUserId());
 			if(folder.exists());
 			else {
 				folder.mkdirs();
 			}
 //			String header = part.getHeader("content-disposition");
 			String fileName = ""+user.getUserId()+"_"+(new Date().getTime())+"."+getFileType(part);
-			String fileAddress = "F:\\files\\"+user.getUserId()+"\\"+fileName;
+			String fileAddress = DataAccessObject.getFilesDirectory()+"\\"+user.getUserId()+"\\"+fileName;
 			part.write(fileAddress);
 			
 			String address = "files/"+user.getUserId()+"/"+fileName;
 			
-			Integer picId = DataAccessObject.setPicWithPathNTitleNTagsNDescriptionNposterId(address, title, tags, des, user.getUserId());
+			Picture picture = DataAccessObject.setPictureWithPathNTitleNTagsNDescriptionNPosterId(address, title, tags, des, user.getUserId());
 			
-			response.sendRedirect("picture_detail.jsp?id="+picId);
+			response.sendRedirect("picture_detail.jsp?id="+picture.getPictureId());
 		}
 	}
 	

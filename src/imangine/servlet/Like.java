@@ -55,13 +55,13 @@ public class Like extends HttpServlet {
 		}
 		 
 		if(instruction[1].equals("pic")&&instruction[0].equals("1"))
-			DataAccessObject.setPicLikeWithPicIdNUserId(itemId, users.getUserId());
+			DataAccessObject.setPictureLikeWithPictureIdNUserId(itemId, users.getUserId());
 		else if(instruction[1].equals("pic")&&instruction[0].equals("2"))
-			DataAccessObject.removePicLikeWithPicIdNUserId(itemId, users.getUserId());
+			DataAccessObject.removePictureLikeWithPictureIdNUserId(itemId, users.getUserId());
 		else if(instruction[1].equals("album")&&instruction[0].equals("1"))
 			DataAccessObject.setAlbumLikeWithAlbumIdNUserId(itemId, users.getUserId());
 		else if(instruction[1].equals("album")&&instruction[0].equals("2"))
-			DataAccessObject.removeAlubmLikedWithPicIdNUserId(itemId, users.getUserId());
+			DataAccessObject.removeAlubmLikedWithAlbumIdNUserId(itemId, users.getUserId());
 		else ;
 		
 			//TODO: add friend and group

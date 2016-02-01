@@ -59,7 +59,7 @@ public class SendPictureComment extends HttpServlet {
 		}
 		else {
 			request.getSession().setAttribute("PicComStatus", new Integer(1));
-			DataAccessObject.setPictureCommentWithPicIdNUserIdNContent(picId,user.getUserId(),comCon);
+			DataAccessObject.setPictureCommentWithPictureIdNUserIdNContent(picId,user.getUserId(),comCon);
 //			request.getRequestDispatcher("single.jsp?id="+picId).forward(request, response);
 			response.sendRedirect("picture_detail.jsp?id="+picId);
 		}
